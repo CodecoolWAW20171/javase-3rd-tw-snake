@@ -1,6 +1,8 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.HealingPowerup;
+import com.codecool.snake.entities.powerups.InvincibilityPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
@@ -17,9 +19,10 @@ public class Game extends Pane {
         new SimpleEnemy(this);
 
         new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-        new SimplePowerup(this);
+
+        new HealingPowerup(this);
+
+        new InvincibilityPowerup(this);
     }
 
     public void start() {

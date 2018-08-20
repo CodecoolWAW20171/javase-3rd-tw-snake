@@ -1,19 +1,19 @@
 package com.codecool.snake.entities.powerups;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-// a simple powerup that makes the snake grow TODO make other powerups
-public class SimplePowerup extends GameEntity implements Interactable {
+// a healing powerup that heals the snake
+public class HealingPowerup extends GameEntity implements Interactable {
 
-    public SimplePowerup(Pane pane) {
+    public HealingPowerup(Pane pane) {
         super(pane);
-        setImage(Globals.powerupBerry);
+        setImage(Globals.medPack);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -23,13 +23,15 @@ public class SimplePowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.addPart(1);
+        if (snakeHead.getHealth() != 100) {
+            snakeHead.changeHealth(10);
+        }
         destroy();
-        new SimplePowerup(this.pane);
+        new HealingPowerup(this.pane);
     }
 
     @Override
     public String getMessage() {
-        return "Got berry power-up :)";
+        return "Got healing power-up :)";
     }
 }
