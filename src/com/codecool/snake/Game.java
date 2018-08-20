@@ -29,6 +29,8 @@ public class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.snake.leftKeyDown = true; break;
                 case RIGHT: Globals.snake.rightKeyDown  = true; break;
+                case A: Globals.secSnake.leftKeyDown = true; break;
+                case D: Globals.secSnake.rightKeyDown = true; break;
             }
         });
 
