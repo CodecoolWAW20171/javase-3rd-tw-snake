@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 public class Game extends Pane {
 
     public Game() {
-        new SnakeHead(this, 500, 500);
+        Globals.snake = new SnakeHead(this, 500, 500);
 
         new SimpleEnemy(this);
         new SimpleEnemy(this);
@@ -26,15 +26,17 @@ public class Game extends Pane {
         Scene scene = getScene();
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = true; break;
-                case RIGHT: Globals.rightKeyDown  = true; break;
+                case LEFT:  Globals.snake.leftKeyDown = true; break;
+                case RIGHT: Globals.snake.rightKeyDown  = true; break;
             }
         });
 
         scene.setOnKeyReleased(event -> {
             switch (event.getCode()) {
-                case LEFT:  Globals.leftKeyDown  = false; break;
-                case RIGHT: Globals.rightKeyDown  = false; break;
+                case LEFT:  Globals.snake.leftKeyDown = false; break;
+                case RIGHT: Globals.snake.rightKeyDown = false; break;
+                case A: Globals.secSnake.leftKeyDown = false; break;
+                case D: Globals.secSnake.rightKeyDown = false; break;
             }
         });
         Globals.gameLoop = new GameLoop();

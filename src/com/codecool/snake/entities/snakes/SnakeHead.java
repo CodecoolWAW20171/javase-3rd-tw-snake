@@ -12,6 +12,8 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private static final float speed = 2;
     private static final float turnRate = 2;
+    public boolean leftKeyDown = false;
+    public boolean rightKeyDown = false;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
 
@@ -29,10 +31,10 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void step() {
         double dir = getRotate();
-        if (Globals.leftKeyDown) {
+        if (leftKeyDown) {
             dir = dir - turnRate;
         }
-        if (Globals.rightKeyDown) {
+        if (rightKeyDown) {
             dir = dir + turnRate;
         }
         // set rotation and position

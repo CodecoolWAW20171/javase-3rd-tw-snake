@@ -20,12 +20,12 @@ public class Globals {
     public static Image powerupBerry = new Image("powerup_berry.png");
     //.. put here the other images you want to use
 
-    public static boolean leftKeyDown;
-    public static boolean rightKeyDown;
     public static List<GameEntity> gameObjects;
     public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
     public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
+    public static SnakeHead snake;
+    public static SnakeHead secSnake;
 
     static {
         gameObjects = new LinkedList<>();
