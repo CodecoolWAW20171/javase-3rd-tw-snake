@@ -6,6 +6,7 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 public class SnakeHead extends GameEntity implements Animatable {
@@ -14,17 +15,18 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     public boolean leftKeyDown = false;
     public boolean rightKeyDown = false;
-    private GameEntity tail; // the last element. Needed to know where to add the next part.
-    private int health;
+    private GameEntity tail = this; // the last element. Needed to know where to add the next part.
+    private int health = 100;
+    private boolean player;
 
-    public SnakeHead(Pane pane, int xc, int yc) {
+    public SnakeHead(Pane pane, int xc, int yc, boolean player) {
         super(pane);
         setX(xc);
         setY(yc);
-        health = 100;
-        tail = this;
-        setImage(Globals.snakeHead);
+        if (player) setImage(Globals.snakeHead);
+        else setImage(Globals.secSnakeHead);
         pane.getChildren().add(this);
+        this.player = player;
 
         addPart(4);
     }
@@ -63,8 +65,11 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newPart = new SnakeBody(pane, tail);
-            tail = newPart;
+            Image image;
+            if (player) image = Globals.snakeBody;
+            else image = Globals.secSnakeBody;
+
+            tail = new SnakeBody(pane, tail, image);
         }
     }
 
