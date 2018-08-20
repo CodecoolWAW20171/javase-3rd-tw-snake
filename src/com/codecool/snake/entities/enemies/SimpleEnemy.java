@@ -24,9 +24,15 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         pane.getChildren().add(this);
         int speed = 1;
         Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-
+        double newX = 0, newY = 0;
+        while (Math.round(newX) == Math.round(Globals.snake.getX())
+                && Math.round(newY) == Math.round(Globals.snake.getY())
+                || newX == 0 && newY == 0) {
+            newX = (rnd.nextDouble() * Globals.WINDOW_WIDTH);
+            newY = (rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        }
+        setX(newX);
+        setY(newY);
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
@@ -36,6 +42,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public void step() {
         if (isOutOfBounds()) {
             destroy();
+            new SimpleEnemy(this.pane);
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
@@ -45,6 +52,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public void apply(SnakeHead player) {
         player.changeHealth(-damage);
         destroy();
+        new SimpleEnemy(this.pane);
     }
 
     @Override
