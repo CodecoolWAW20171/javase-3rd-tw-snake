@@ -5,7 +5,10 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 
 public class SnakeHead extends GameEntity implements Animatable {
@@ -56,9 +59,36 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
-            System.out.println("Game Over");
             Globals.gameLoop.stop();
+            Alert alert = showGameOverModal();
+
+            Platform.runLater(alert::showAndWait);
         }
+    }
+
+
+    protected Alert showGameOverModal() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        System.out.println("Game Over");
+        alert.setTitle("Game Over");
+        alert.setHeaderText("Game Over");
+        alert.setContentText("Do you want try again?");
+
+        ButtonType yesButton = new ButtonType("YES");
+        ButtonType noButton = new ButtonType("NO");
+
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(noButton, yesButton);
+
+        alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> {
+            System.out.println("Clicked YES");
+        });
+
+        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
+            System.exit(0);
+        });
+
+        return alert;
     }
 
     public void addPart(int numParts) {
