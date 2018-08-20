@@ -9,7 +9,8 @@ import javafx.scene.layout.Pane;
 public class Game extends Pane {
 
     public Game() {
-        Globals.snake = new SnakeHead(this, 500, 500);
+        Globals.snake = new SnakeHead(this, 750, 500);
+        Globals.secSnake = new SnakeHead(this, 250, 500);
 
         new SimpleEnemy(this);
         new SimpleEnemy(this);
