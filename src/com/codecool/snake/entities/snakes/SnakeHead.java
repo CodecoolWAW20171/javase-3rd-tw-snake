@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -7,6 +8,7 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
@@ -67,7 +69,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
 
-    protected Alert showGameOverModal() {
+    private Alert showGameOverModal() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         System.out.println("Game Over");
         alert.setTitle("Game Over");
@@ -81,7 +83,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         alert.getButtonTypes().addAll(noButton, yesButton);
 
         alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> {
-            System.out.println("Clicked YES");
+            runNewGame();
         });
 
         alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
@@ -89,6 +91,14 @@ public class SnakeHead extends GameEntity implements Animatable {
         });
 
         return alert;
+    }
+
+    private void runNewGame() {
+        Game game = new Game();
+
+        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.stage.show();
+        game.start();
     }
 
     public void addPart(int numParts) {
