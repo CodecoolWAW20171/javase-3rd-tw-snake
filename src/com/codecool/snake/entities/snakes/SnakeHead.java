@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -95,8 +96,9 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private void runNewGame() {
         Game game = new Game();
-
-        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.vBox = new VBox();
+        Globals.vBox.getChildren().addAll(Globals.menuBar, game);
+        Globals.stage.setScene(new Scene(Globals.vBox, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         Globals.stage.show();
         game.start();
     }

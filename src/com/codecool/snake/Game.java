@@ -4,7 +4,10 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 public class Game extends Pane {
 
@@ -23,15 +26,15 @@ public class Game extends Pane {
     }
 
     public void start() {
-        Scene scene = getScene();
-        scene.setOnKeyPressed(event -> {
+        Globals.scene = getScene();
+        Globals.scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:  Globals.snake.leftKeyDown = true; break;
                 case RIGHT: Globals.snake.rightKeyDown  = true; break;
             }
         });
 
-        scene.setOnKeyReleased(event -> {
+        Globals.scene.setOnKeyReleased(event -> {
             switch (event.getCode()) {
                 case LEFT:  Globals.snake.leftKeyDown = false; break;
                 case RIGHT: Globals.snake.rightKeyDown = false; break;

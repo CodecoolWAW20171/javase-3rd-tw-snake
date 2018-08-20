@@ -2,7 +2,11 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.Collections;
@@ -29,6 +33,14 @@ public class Globals {
     public static SnakeHead secSnake;
 
     public static Stage stage;
+    public static Scene scene;
+    public static VBox vBox;
+    public static MenuBar menuBar;
+    public static Menu menuRestart;
+    public static Menu menuPause;
+    public static Menu menuClose;
+
+
 
     static {
         gameObjects = new LinkedList<>();
