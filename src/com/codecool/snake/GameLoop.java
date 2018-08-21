@@ -30,7 +30,7 @@ public class GameLoop extends AnimationTimer {
     }
 
     public void pause() {
-        if(Globals.isGamePaused) {
+        if(!Globals.isGamePaused) {
             super.stop();
             Globals.isGamePaused = !Globals.isGamePaused;
         } else {
