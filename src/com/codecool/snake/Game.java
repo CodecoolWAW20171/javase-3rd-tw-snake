@@ -29,6 +29,7 @@ public class Game extends Pane {
                 case LEFT:  Globals.snake.leftKeyDown = true; break;
                 case RIGHT: Globals.snake.rightKeyDown  = true; break;
                 case P: Globals.gameLoop.pause();
+                case R: Globals.gameLoop.restart();
             }
         });
 
