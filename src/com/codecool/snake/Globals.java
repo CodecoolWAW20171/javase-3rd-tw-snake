@@ -5,6 +5,7 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -36,11 +37,11 @@ public class Globals {
     public static Scene scene;
     public static VBox vBox;
     public static MenuBar menuBar;
-    public static Menu menuRestart;
-    public static Menu menuPause;
-    public static Menu menuClose;
+    public static Menu menu;
 
-
+    public static MenuItem menuRestartItem;
+    public static MenuItem menuPauseItem;
+    public static MenuItem menuCloseItem;
 
     static {
         gameObjects = new LinkedList<>();

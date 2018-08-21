@@ -1,15 +1,11 @@
 package com.codecool.snake;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -24,14 +20,33 @@ public class Main extends Application {
         Globals.stage = primaryStage;
         Globals.vBox = new VBox();
         Globals.menuBar = new MenuBar();
-        Globals.menuRestart = new Menu("Restart");
-        Globals.menuPause = new Menu("Pause");
-        Globals.menuClose = new Menu("Close");
-        Globals.menuBar.getMenus().addAll(Globals.menuRestart, Globals.menuPause, Globals.menuClose);
+        Globals.menu = new Menu("Menu");
+
+        Globals.menuRestartItem = new MenuItem("Restart");
+        Globals.menuPauseItem = new MenuItem("Pause");
+        Globals.menuCloseItem = new MenuItem("Close");
+
+        Globals.menuCloseItem.setOnAction(event -> {
+            System.exit(0);
+        });
+
+        Globals.menuPauseItem.setOnAction(event -> {
+
+        });
+
+        Globals.menuRestartItem.setOnAction(event -> {
+            Globals.snake.destroy();
+            Globals.snake.runNewGame();
+        });
+
+        Globals.menu.getItems().setAll(Globals.menuRestartItem, Globals.menuPauseItem, Globals.menuCloseItem);
+
+
+        Globals.menuBar.getMenus().addAll(Globals.menu);
         Globals.vBox.getChildren().addAll(Globals.menuBar, game);
 
         primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(new Scene(Globals.vBox , Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        primaryStage.setScene(new Scene(Globals.vBox, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         primaryStage.show();
         game.start();
     }

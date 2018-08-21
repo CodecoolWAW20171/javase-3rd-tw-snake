@@ -88,13 +88,13 @@ public class SnakeHead extends GameEntity implements Animatable {
         });
 
         alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
-            System.exit(0);
+            alert.close();
         });
 
         return alert;
     }
 
-    private void runNewGame() {
+    public void runNewGame() {
         Game game = new Game();
         Globals.vBox = new VBox();
         Globals.vBox.getChildren().addAll(Globals.menuBar, game);
