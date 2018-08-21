@@ -44,10 +44,13 @@ public class Globals {
     public static MenuBar menuBar;
     public static Menu menu;
     public static Menu menuInfo;
+    public static Menu menuHealth;
 
     public static MenuItem menuRestartItem;
     public static MenuItem menuPauseItem;
     public static MenuItem menuCloseItem;
+
+    public static int health;
 
     static {
         gameObjects = new LinkedList<>();

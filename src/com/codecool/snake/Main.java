@@ -31,6 +31,10 @@ public class Main extends Application {
         Globals.menuInfo = new Menu(info);
         Globals.menuInfo.setDisable(true);
 
+        Globals.menuHealth = new Menu();
+        Globals.menuHealth.setText("Health: " + Globals.health);
+        Globals.menuHealth.setDisable(true);
+
         Globals.menuCloseItem.setOnAction(event -> {
             System.exit(0);
         });
@@ -51,7 +55,7 @@ public class Main extends Application {
         Globals.menu.getItems().setAll(Globals.menuRestartItem, Globals.menuPauseItem, Globals.menuCloseItem);
 
 
-        Globals.menuBar.getMenus().addAll(Globals.menu, Globals.menuInfo);
+        Globals.menuBar.getMenus().addAll(Globals.menu, Globals.menuInfo, Globals.menuHealth);
         Globals.vBox.getChildren().addAll(Globals.menuBar, game);
 
         primaryStage.setTitle("Snake Game");

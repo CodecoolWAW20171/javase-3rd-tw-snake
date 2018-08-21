@@ -26,6 +26,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         setX(xc);
         setY(yc);
         health = 100;
+        Globals.health = getHealth();
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
@@ -46,7 +47,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
@@ -65,6 +65,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
             Platform.runLater(alert::showAndWait);
         }
+        Globals.menuHealth.setText("Health: " + Globals.health);
     }
 
 
@@ -73,7 +74,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         System.out.println("Game Over");
         alert.setTitle("Game Over");
         alert.setHeaderText("Game Over");
-        alert.setContentText("Do you want try again?");
+        alert.setContentText("Your Health:\n" + health + "\nDo you want try again?");
 
         ButtonType yesButton = new ButtonType("YES");
         ButtonType noButton = new ButtonType("NO");
@@ -103,6 +104,10 @@ public class SnakeHead extends GameEntity implements Animatable {
         return this.health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public void beInvincible() {
         this.isInvincible = true;
         long expectedTime = System.currentTimeMillis() + 5000;
@@ -113,5 +118,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
+        setHealth(health);
+        Globals.health = getHealth();
     }
 }
