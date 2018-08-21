@@ -1,5 +1,6 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
@@ -7,6 +8,8 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -16,6 +19,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     public boolean rightKeyDown = false;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
+    private ArrayList<SnakeBody> body = new ArrayList<SnakeBody>();
 
     public SnakeHead(Pane pane, int xc, int yc) {
         super(pane);
@@ -56,14 +60,25 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
-            System.out.println("Game Over");
-            Globals.gameLoop.stop();
+            for (GameEntity entity : Globals.getGameObjects()) {
+                if (body.indexOf(entity) != -1) {
+                    Globals.removeGameObject(entity);
+                    entity.destroy();
+                }
+            }
+            for (GameEntity entity : Globals.getGameObjects()) {
+                if (entity.equals(this)) {
+                    Globals.removeGameObject(entity);
+                    entity.destroy();
+                }
+            }
         }
     }
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
             SnakeBody newPart = new SnakeBody(pane, tail);
+            body.add(newPart);
             tail = newPart;
         }
     }
