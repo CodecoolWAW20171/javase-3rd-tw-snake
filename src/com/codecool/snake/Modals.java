@@ -9,7 +9,12 @@ public class Modals {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         System.out.println("Game Over");
         alert.setTitle("Game Over");
-        alert.setHeaderText("Game Over");
+        String higscoreText;
+        if (Globals.singleplayer)
+            higscoreText = "Your score: " + Globals.snake.score;
+        else
+            higscoreText = "Green snake: " + Globals.snake.score + "\nPink snake: " + Globals.secSnake.score;
+        alert.setHeaderText(higscoreText);
         alert.setContentText("Your Health:\n" + Globals.snake.health + "\nDo you want try again?");
 
         ButtonType yesButton = new ButtonType("YES");
