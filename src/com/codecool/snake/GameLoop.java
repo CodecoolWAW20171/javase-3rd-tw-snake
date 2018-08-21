@@ -15,6 +15,10 @@ public class GameLoop extends AnimationTimer {
                 animObject.step();
             }
         }
+        if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < 15) &&
+                (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < 15)) {
+            Globals.gameLoop.stop();
+        }
         Globals.gameObjects.addAll(Globals.newGameObjects);
         Globals.newGameObjects.clear();
 
