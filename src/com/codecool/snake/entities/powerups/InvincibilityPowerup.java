@@ -22,12 +22,12 @@ public class InvincibilityPowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.beInvincible();
+        snakeHead.score += 10;
         destroy();
     }
 
     @Override
     public String getMessage() {
-        return "Got invincibility power-up :)";
+        return "Got score power-up :)";
     }
 }

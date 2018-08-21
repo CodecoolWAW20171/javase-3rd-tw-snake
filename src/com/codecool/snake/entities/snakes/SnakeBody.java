@@ -1,10 +1,12 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.util.LinkedList;
@@ -17,10 +19,10 @@ public class SnakeBody extends GameEntity implements Animatable {
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
 
-    public SnakeBody(Pane pane, GameEntity parent) {
+    public SnakeBody(Pane pane, GameEntity parent, Image image) {
         super(pane);
         this.parent = parent;
-        setImage(Globals.snakeBody);
+        setImage(image);
 
         // place it visually below the current tail
         List<Node> children = pane.getChildren();

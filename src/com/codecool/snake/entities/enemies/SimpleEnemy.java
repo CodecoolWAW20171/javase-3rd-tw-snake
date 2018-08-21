@@ -25,8 +25,8 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         int speed = 1;
         Random rnd = new Random();
         double newX = 0, newY = 0;
-        while (Math.round(newX) == Math.round(Globals.snake.getX())
-                && Math.round(newY) == Math.round(Globals.snake.getY())
+        while (Math.abs(Math.round(newX) - Math.round(Globals.snake.getX())) < 15
+                && Math.abs(Math.round(newY) - Math.round(Globals.snake.getY())) < 15
                 || newX == 0 && newY == 0) {
             newX = (rnd.nextDouble() * Globals.WINDOW_WIDTH);
             newY = (rnd.nextDouble() * Globals.WINDOW_HEIGHT);
@@ -50,19 +50,19 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     @Override
     public void apply(SnakeHead player) {
+<<<<<<< HEAD
         if (!player.isInvincible) {
             player.changeHealth(-damage);
         }
         player.isInvincible = false;
+=======
+        player.changeHealth(-damage);
+>>>>>>> Multiplayer
         destroy();
     }
 
     @Override
     public String getMessage() {
-        if (!Globals.snake.isInvincible) {
-            return "10 damage";
-        } else {
-            return "Invincible";
-        }
+        return "10 damage";
     }
 }

@@ -7,9 +7,11 @@ import com.codecool.snake.entities.powerups.HealingPowerup;
 import com.codecool.snake.entities.powerups.InvincibilityPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
-
 import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
@@ -17,13 +19,49 @@ public class GameLoop extends AnimationTimer {
     // This gets called every 1/60 seconds
     @Override
     public void handle(long now) {
+        runAnimations();
+        checkSnakesCollisions();
+        checkGameOverStatus();
+        generateRandomPowerups();
+
+        Globals.gameObjects.addAll(Globals.newGameObjects);
+        Globals.newGameObjects.clear();
+
+        Globals.gameObjects.removeAll(Globals.oldGameObjects);
+        Globals.oldGameObjects.clear();
+    }
+
+    private void runAnimations() {
         for (GameEntity gameObject : Globals.gameObjects) {
             if (gameObject instanceof Animatable) {
                 Animatable animObject = (Animatable)gameObject;
                 animObject.step();
             }
         }
+    }
 
+    private void checkSnakesCollisions() {
+        if (Globals.secSnake != null)
+            if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < 15) &&
+                    (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < 15)) {
+                handleGameOver();
+            }
+    }
+
+    private void checkGameOverStatus() {
+        if(Globals.snake.getHealth() <= 0 && Globals.secSnake.getHealth() <= 0)
+            handleGameOver();
+    }
+
+    private void handleGameOver() {
+        Globals.gameLoop.stop();
+        Modals modals = new Modals();
+
+        Platform.runLater(modals.showGameOverModal()::showAndWait);
+        Globals.gameLoop.stop();
+    }
+
+    private void generateRandomPowerups() {
         Random rand = new Random();
         if (rand.nextInt(1000) < 2) {
             Globals.addGameObject(new SimpleEnemy(Globals.gamePane));
@@ -34,11 +72,6 @@ public class GameLoop extends AnimationTimer {
         } if (rand.nextInt(1500) < 1) {
             Globals.addGameObject(new InvincibilityPowerup(Globals.gamePane));
         }
-        Globals.gameObjects.addAll(Globals.newGameObjects);
-        Globals.newGameObjects.clear();
-
-        Globals.gameObjects.removeAll(Globals.oldGameObjects);
-        Globals.oldGameObjects.clear();
     }
 
     @Override

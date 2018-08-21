@@ -8,6 +8,12 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import java.util.ArrayList;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
@@ -18,19 +24,25 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     public boolean leftKeyDown = false;
     public boolean rightKeyDown = false;
+    private GameEntity tail = this; // the last element. Needed to know where to add the next part.
+    private int health = 100;
+    private boolean player;
+    private ArrayList<SnakeBody> body = new ArrayList<SnakeBody>();
+    public int score = 4;
     public boolean isInvincible = false;
-    private GameEntity tail; // the last element. Needed to know where to add the next part.
-    private int health;
 
-    public SnakeHead(Pane pane, int xc, int yc) {
+
+    public SnakeHead(Pane pane, int xc, int yc, boolean player) {
         super(pane);
         setX(xc);
         setY(yc);
+        if (player) setImage(Globals.snakeHead);
+        else setImage(Globals.secSnakeHead);
         health = 100;
         Globals.health = getHealth();
         tail = this;
-        setImage(Globals.snakeHead);
         pane.getChildren().add(this);
+        this.player = player;
 
         addPart(4);
     }
@@ -61,19 +73,38 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
-            Globals.gameLoop.stop();
-            Modals modal = new Modals();
-            Alert alert = modal.showGameOverModal();
-
-            Platform.runLater(alert::showAndWait);
+            health = 0;
+            score = body.size();
+            for (GameEntity entity : Globals.getGameObjects()) {
+                if (body.indexOf(entity) != -1) {
+                    Globals.removeGameObject(entity);
+                    entity.destroy();
+                }
+            }
+            for (GameEntity entity : Globals.getGameObjects()) {
+                if (entity.equals(this)) {
+                    Globals.removeGameObject(entity);
+                    entity.destroy();
+                }
+            }
         }
-        Globals.menuHealth.setText("Health: " + Globals.health);
     }
+//            Globals.gameLoop.stop();
+//            Modals modal = new Modals();
+//            Alert alert = modal.showGameOverModal();
+//
+//            Platform.runLater(alert::showAndWait);
+
+//        Globals.menuHealth.setText("Health: " + Globals.health);
+
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newPart = new SnakeBody(pane, tail);
-            tail = newPart;
+            Image image;
+            if (player) image = Globals.snakeBody;
+            else image = Globals.secSnakeBody;
+            tail = new SnakeBody(pane, tail, image);
+            body.add((SnakeBody) tail);
         }
     }
 
