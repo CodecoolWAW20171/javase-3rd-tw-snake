@@ -1,6 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.Globals;
+import com.codecool.snake.Modals;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
@@ -61,36 +62,12 @@ public class SnakeHead extends GameEntity implements Animatable {
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
             Globals.gameLoop.stop();
-            Alert alert = showGameOverModal();
+            Modals modal = new Modals();
+            Alert alert = modal.showGameOverModal();
 
             Platform.runLater(alert::showAndWait);
         }
         Globals.menuHealth.setText("Health: " + Globals.health);
-    }
-
-
-    private Alert showGameOverModal() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        System.out.println("Game Over");
-        alert.setTitle("Game Over");
-        alert.setHeaderText("Game Over");
-        alert.setContentText("Your Health:\n" + health + "\nDo you want try again?");
-
-        ButtonType yesButton = new ButtonType("YES");
-        ButtonType noButton = new ButtonType("NO");
-
-        alert.getButtonTypes().clear();
-        alert.getButtonTypes().addAll(noButton, yesButton);
-
-        alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> {
-            Globals.gameLoop.restart();
-        });
-
-        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
-            alert.close();
-        });
-
-        return alert;
     }
 
     public void addPart(int numParts) {
