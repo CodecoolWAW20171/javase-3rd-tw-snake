@@ -74,7 +74,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
             health = 0;
-            score = body.size();
             for (GameEntity entity : Globals.getGameObjects()) {
                 if (body.indexOf(entity) != -1) {
                     Globals.removeGameObject(entity);
@@ -100,6 +99,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
+            score++;
             Image image;
             if (player) image = Globals.snakeBody;
             else image = Globals.secSnakeBody;
