@@ -31,7 +31,12 @@ public class Main extends Application {
         });
 
         Globals.menuPauseItem.setOnAction(event -> {
-
+            Globals.gameLoop.pause();
+            if ( Globals.menuPauseItem.getText().equals("Pause")) {
+                Globals.menuPauseItem.setText("Resume");
+            } else {
+                Globals.menuPauseItem.setText("Pause");
+            }
         });
 
         Globals.menuRestartItem.setOnAction(event -> {
