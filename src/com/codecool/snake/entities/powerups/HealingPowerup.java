@@ -27,7 +27,6 @@ public class HealingPowerup extends GameEntity implements Interactable {
             snakeHead.changeHealth(10);
         }
         destroy();
-        new HealingPowerup(this.pane);
     }
 
     @Override

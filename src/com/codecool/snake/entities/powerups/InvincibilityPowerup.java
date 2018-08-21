@@ -24,7 +24,6 @@ public class InvincibilityPowerup extends GameEntity implements Interactable {
     public void apply(SnakeHead snakeHead) {
         snakeHead.beInvincible();
         destroy();
-        new InvincibilityPowerup(this.pane);
     }
 
     @Override

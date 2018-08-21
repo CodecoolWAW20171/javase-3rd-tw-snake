@@ -42,7 +42,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public void step() {
         if (isOutOfBounds()) {
             destroy();
-            new SimpleEnemy(this.pane);
+            new SimpleEnemy(pane);
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
@@ -54,11 +54,14 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
             player.changeHealth(-damage);
         }
         destroy();
-        new SimpleEnemy(this.pane);
     }
 
     @Override
     public String getMessage() {
-        return "10 damage";
+        if (!Globals.snake.isInvincible) {
+            return "10 damage";
+        } else {
+            return "Invincible";
+        }
     }
 }

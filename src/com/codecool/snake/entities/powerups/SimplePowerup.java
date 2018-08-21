@@ -25,7 +25,6 @@ public class SimplePowerup extends GameEntity implements Interactable {
     public void apply(SnakeHead snakeHead) {
         snakeHead.addPart(1);
         destroy();
-        new SimplePowerup(this.pane);
     }
 
     @Override
