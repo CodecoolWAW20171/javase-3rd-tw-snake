@@ -39,6 +39,7 @@ public class Globals {
     public static SnakeHead secSnake;
     public static Pane gamePane;
     public static boolean isGamePaused = false;
+    public static boolean singleplayer;
 
     public static Stage stage;
     public static Scene scene;

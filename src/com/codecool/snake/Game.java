@@ -7,19 +7,25 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
 
-    public Game() {
-        Globals.snake = new SnakeHead(this, 750, 500, true);
-        Globals.secSnake = new SnakeHead(this, 250, 500, false);
-
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-
-        new SimplePowerup(this);
-        new SimplePowerup(this);
-    }
-
     public void start() {
+        if(Globals.singleplayer) {
+            Globals.snake = new SnakeHead(this, 500, 500, true);
+            Globals.secSnake = new SnakeHead(this, -100, -100, false);
+        }
+        else {
+            Globals.snake = new SnakeHead(this, 750, 500, true);
+            Globals.secSnake = new SnakeHead(this, 250, 500, false);
+        }
+
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+
+        new SimplePowerup(this);
+        new SimplePowerup(this);
+
         Globals.scene = getScene();
         Globals.scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {

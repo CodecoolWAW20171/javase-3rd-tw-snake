@@ -43,10 +43,12 @@ public class Modals {
         alert.getButtonTypes().addAll(singlePlayerModeButton, twoPlayersModeButton);
 
         alert.getDialogPane().lookupButton(twoPlayersModeButton).setOnMouseReleased(event -> {
-            Globals.gameLoop.restart();
+            Globals.singleplayer = false;
+            game.start();
         });
 
         alert.getDialogPane().lookupButton(singlePlayerModeButton).setOnMouseReleased(event -> {
+            Globals.singleplayer = true;
             game.start();
         });
 
