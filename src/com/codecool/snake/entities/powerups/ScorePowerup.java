@@ -8,11 +8,11 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-public class InvincibilityPowerup extends GameEntity implements Interactable {
+public class ScorePowerup extends GameEntity implements Interactable {
 
     private static final int scoreBoost = 10;
 
-    public InvincibilityPowerup(Pane pane) {
+    public ScorePowerup(Pane pane) {
         super(pane);
         setImage(Globals.pill);
         pane.getChildren().add(this);

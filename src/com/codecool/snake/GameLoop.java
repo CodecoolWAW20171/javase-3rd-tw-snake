@@ -4,7 +4,7 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.HealingPowerup;
-import com.codecool.snake.entities.powerups.InvincibilityPowerup;
+import com.codecool.snake.entities.powerups.ScorePowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -70,7 +70,7 @@ public class GameLoop extends AnimationTimer {
         } if (rand.nextInt(1000) < 1) {
             Globals.addGameObject(new HealingPowerup(Globals.gamePane));
         } if (rand.nextInt(1500) < 1) {
-            Globals.addGameObject(new InvincibilityPowerup(Globals.gamePane));
+            Globals.addGameObject(new ScorePowerup(Globals.gamePane));
         }
     }
 
