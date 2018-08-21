@@ -29,4 +29,28 @@ public class Modals {
         return alert;
     }
 
+    public Alert selectGameMode(Game game) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        System.out.println("Select Game Mode");
+        alert.setTitle("Game Mode");
+        alert.setHeaderText("Game Mode");
+        alert.setContentText("Select Game Mode");
+
+        ButtonType singlePlayerModeButton = new ButtonType("Single Player");
+        ButtonType twoPlayersModeButton = new ButtonType("Versus Mode");
+
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(singlePlayerModeButton, twoPlayersModeButton);
+
+        alert.getDialogPane().lookupButton(twoPlayersModeButton).setOnMouseReleased(event -> {
+            Globals.gameLoop.restart();
+        });
+
+        alert.getDialogPane().lookupButton(singlePlayerModeButton).setOnMouseReleased(event -> {
+            game.start();
+        });
+
+        return alert;
+    }
+
 }
