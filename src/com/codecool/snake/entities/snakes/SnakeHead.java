@@ -1,18 +1,15 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.Game;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
-import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -20,6 +17,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     public boolean leftKeyDown = false;
     public boolean rightKeyDown = false;
+    public boolean isInvincible = false;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
 
@@ -98,6 +96,18 @@ public class SnakeHead extends GameEntity implements Animatable {
         for (int i = 0; i < numParts; i++) {
             SnakeBody newPart = new SnakeBody(pane, tail);
             tail = newPart;
+        }
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void beInvincible() {
+        this.isInvincible = true;
+        long expectedTime = System.currentTimeMillis() + 5000;
+        if (System.currentTimeMillis() == expectedTime) {
+            this.isInvincible = false;
         }
     }
 

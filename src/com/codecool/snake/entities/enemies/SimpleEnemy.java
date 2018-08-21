@@ -1,9 +1,9 @@
 package com.codecool.snake.entities.enemies;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
-import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
@@ -24,9 +24,15 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         pane.getChildren().add(this);
         int speed = 1;
         Random rnd = new Random();
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-
+        double newX = 0, newY = 0;
+        while (Math.round(newX) == Math.round(Globals.snake.getX())
+                && Math.round(newY) == Math.round(Globals.snake.getY())
+                || newX == 0 && newY == 0) {
+            newX = (rnd.nextDouble() * Globals.WINDOW_WIDTH);
+            newY = (rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        }
+        setX(newX);
+        setY(newY);
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
@@ -36,6 +42,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public void step() {
         if (isOutOfBounds()) {
             destroy();
+            new SimpleEnemy(pane);
         }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
@@ -43,12 +50,18 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     @Override
     public void apply(SnakeHead player) {
-        player.changeHealth(-damage);
+        if (!player.isInvincible) {
+            player.changeHealth(-damage);
+        }
         destroy();
     }
 
     @Override
     public String getMessage() {
-        return "10 damage";
+        if (!Globals.snake.isInvincible) {
+            return "10 damage";
+        } else {
+            return "Invincible";
+        }
     }
 }

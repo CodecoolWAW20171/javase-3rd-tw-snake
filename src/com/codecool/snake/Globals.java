@@ -7,6 +7,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -24,6 +25,8 @@ public class Globals {
     public static Image snakeBody = new Image("snake_body.png");
     public static Image simpleEnemy = new Image("simple_enemy.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
+    public static Image medPack = new Image("med_pack.png");
+    public static Image pill = new Image("pill.png");
     //.. put here the other images you want to use
 
     public static List<GameEntity> gameObjects;
@@ -32,6 +35,7 @@ public class Globals {
     public static GameLoop gameLoop;
     public static SnakeHead snake;
     public static SnakeHead secSnake;
+    public static Pane gamePane;
     public static boolean isGamePaused = false;
 
     public static Stage stage;

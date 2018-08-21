@@ -17,6 +17,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Game game = new Game();
+        Globals.gamePane = game;
+
         Globals.stage = primaryStage;
         Globals.vBox = new VBox();
         Globals.menuBar = new MenuBar();
