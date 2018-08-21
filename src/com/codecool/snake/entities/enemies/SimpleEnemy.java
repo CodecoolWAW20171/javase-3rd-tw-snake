@@ -50,14 +50,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     @Override
     public void apply(SnakeHead player) {
-<<<<<<< HEAD
-        if (!player.isInvincible) {
-            player.changeHealth(-damage);
-        }
-        player.isInvincible = false;
-=======
         player.changeHealth(-damage);
->>>>>>> Multiplayer
         destroy();
     }
 
