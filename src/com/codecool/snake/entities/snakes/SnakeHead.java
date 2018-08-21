@@ -1,11 +1,16 @@
 package com.codecool.snake.entities.snakes;
 
+import com.codecool.snake.Game;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 
 import java.util.concurrent.TimeUnit;
@@ -59,9 +64,44 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
-            System.out.println("Game Over");
             Globals.gameLoop.stop();
+            Alert alert = showGameOverModal();
+
+            Platform.runLater(alert::showAndWait);
         }
+    }
+
+
+    private Alert showGameOverModal() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        System.out.println("Game Over");
+        alert.setTitle("Game Over");
+        alert.setHeaderText("Game Over");
+        alert.setContentText("Do you want try again?");
+
+        ButtonType yesButton = new ButtonType("YES");
+        ButtonType noButton = new ButtonType("NO");
+
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(noButton, yesButton);
+
+        alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> {
+            runNewGame();
+        });
+
+        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
+            System.exit(0);
+        });
+
+        return alert;
+    }
+
+    private void runNewGame() {
+        Game game = new Game();
+
+        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.stage.show();
+        game.start();
     }
 
     public void addPart(int numParts) {

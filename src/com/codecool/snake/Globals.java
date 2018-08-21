@@ -4,6 +4,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -30,6 +31,9 @@ public class Globals {
     public static SnakeHead snake;
     public static SnakeHead secSnake;
     public static Pane gamePane;
+    public static boolean isGamePaused = false;
+
+    public static Stage stage;
 
     static {
         gameObjects = new LinkedList<>();

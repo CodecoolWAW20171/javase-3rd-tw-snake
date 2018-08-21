@@ -7,6 +7,8 @@ import com.codecool.snake.entities.powerups.HealingPowerup;
 import com.codecool.snake.entities.powerups.InvincibilityPowerup;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.animation.AnimationTimer;
+import javafx.scene.Scene;
+
 
 import java.util.Random;
 
@@ -38,4 +40,29 @@ public class GameLoop extends AnimationTimer {
         Globals.gameObjects.removeAll(Globals.oldGameObjects);
         Globals.oldGameObjects.clear();
     }
+
+    @Override
+    public void stop() {
+        super.stop();
+        Globals.snake.destroy();
+    }
+
+    void pause() {
+        if(!Globals.isGamePaused) {
+            super.stop();
+            Globals.isGamePaused = !Globals.isGamePaused;
+        } else {
+            super.start();
+            Globals.isGamePaused = !Globals.isGamePaused;
+        }
+    }
+
+    void restart() {
+        Globals.gameLoop.stop();
+        Game game = new Game();
+        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.stage.show();
+        game.start();
+    }
+
 }
