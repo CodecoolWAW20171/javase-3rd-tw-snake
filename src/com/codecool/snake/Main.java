@@ -25,6 +25,9 @@ public class Main extends Application {
         Globals.menuRestartItem = new MenuItem("Restart");
         Globals.menuPauseItem = new MenuItem("Pause");
         Globals.menuCloseItem = new MenuItem("Close");
+        String info = "<- Move Left, -> Move Right, P - pause, R - restart";
+        Globals.menuInfo = new Menu(info);
+        Globals.menuInfo.setDisable(true);
 
         Globals.menuCloseItem.setOnAction(event -> {
             System.exit(0);
@@ -40,14 +43,13 @@ public class Main extends Application {
         });
 
         Globals.menuRestartItem.setOnAction(event -> {
-            Globals.snake.destroy();
-            Globals.snake.runNewGame();
+            Globals.gameLoop.restart();
         });
 
         Globals.menu.getItems().setAll(Globals.menuRestartItem, Globals.menuPauseItem, Globals.menuCloseItem);
 
 
-        Globals.menuBar.getMenus().addAll(Globals.menu);
+        Globals.menuBar.getMenus().addAll(Globals.menu, Globals.menuInfo);
         Globals.vBox.getChildren().addAll(Globals.menuBar, game);
 
         primaryStage.setTitle("Snake Game");

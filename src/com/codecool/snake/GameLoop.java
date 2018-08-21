@@ -4,6 +4,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 
 
 public class GameLoop extends AnimationTimer {
@@ -40,10 +41,12 @@ public class GameLoop extends AnimationTimer {
         }
     }
 
-    void restart() {
+    public void restart() {
         Globals.gameLoop.stop();
         Game game = new Game();
-        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.vBox = new VBox();
+        Globals.vBox.getChildren().addAll(Globals.menuBar, game);
+        Globals.stage.setScene(new Scene(Globals.vBox, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         Globals.stage.show();
         game.start();
     }

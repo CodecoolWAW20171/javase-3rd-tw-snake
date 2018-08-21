@@ -39,6 +39,7 @@ public class Globals {
     public static VBox vBox;
     public static MenuBar menuBar;
     public static Menu menu;
+    public static Menu menuInfo;
 
     public static MenuItem menuRestartItem;
     public static MenuItem menuPauseItem;

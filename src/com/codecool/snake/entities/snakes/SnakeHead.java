@@ -84,7 +84,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         alert.getButtonTypes().addAll(noButton, yesButton);
 
         alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> {
-            runNewGame();
+            Globals.gameLoop.restart();
         });
 
         alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
@@ -92,15 +92,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         });
 
         return alert;
-    }
-
-    public void runNewGame() {
-        Game game = new Game();
-        Globals.vBox = new VBox();
-        Globals.vBox.getChildren().addAll(Globals.menuBar, game);
-        Globals.stage.setScene(new Scene(Globals.vBox, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-        Globals.stage.show();
-        game.start();
     }
 
     public void addPart(int numParts) {
