@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class InvincibilityPowerup extends GameEntity implements Interactable {
 
+    private static final int scoreBoost = 10;
+
     public InvincibilityPowerup(Pane pane) {
         super(pane);
         setImage(Globals.pill);
@@ -22,7 +24,7 @@ public class InvincibilityPowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.score += 10;
+        snakeHead.score += scoreBoost;
         destroy();
     }
 
