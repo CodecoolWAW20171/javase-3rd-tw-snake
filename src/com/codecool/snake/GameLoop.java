@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import javafx.animation.AnimationTimer;
+import javafx.scene.Scene;
 
 
 public class GameLoop extends AnimationTimer {
@@ -29,7 +30,7 @@ public class GameLoop extends AnimationTimer {
         Globals.snake.destroy();
     }
 
-    public void pause() {
+    void pause() {
         if(!Globals.isGamePaused) {
             super.stop();
             Globals.isGamePaused = !Globals.isGamePaused;
@@ -38,4 +39,13 @@ public class GameLoop extends AnimationTimer {
             Globals.isGamePaused = !Globals.isGamePaused;
         }
     }
+
+    void restart() {
+        Globals.gameLoop.stop();
+        Game game = new Game();
+        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.stage.show();
+        game.start();
+    }
+
 }
