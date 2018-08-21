@@ -87,10 +87,6 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void beInvincible() {
         this.isInvincible = true;
-        long expectedTime = System.currentTimeMillis() + 5000;
-        if (System.currentTimeMillis() == expectedTime) {
-            this.isInvincible = false;
-        }
     }
 
     public void changeHealth(int diff) {

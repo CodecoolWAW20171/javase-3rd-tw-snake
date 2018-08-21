@@ -53,6 +53,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         if (!player.isInvincible) {
             player.changeHealth(-damage);
         }
+        player.isInvincible = false;
         destroy();
     }
 
