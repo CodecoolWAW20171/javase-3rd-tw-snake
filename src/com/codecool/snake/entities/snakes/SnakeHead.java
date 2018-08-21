@@ -29,7 +29,6 @@ public class SnakeHead extends GameEntity implements Animatable {
     private boolean player;
     private ArrayList<SnakeBody> body = new ArrayList<SnakeBody>();
     public int score = 4;
-    public boolean isInvincible = false;
 
 
     public SnakeHead(Pane pane, int xc, int yc, boolean player) {
@@ -114,10 +113,6 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void setHealth(int health) {
         this.health = health;
-    }
-
-    public void beInvincible() {
-        this.isInvincible = true;
     }
 
     public void changeHealth(int diff) {
