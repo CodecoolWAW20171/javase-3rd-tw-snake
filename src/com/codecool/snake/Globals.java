@@ -27,6 +27,7 @@ public class Globals {
     public static GameLoop gameLoop;
     public static SnakeHead snake;
     public static SnakeHead secSnake;
+    public static boolean isGamePaused = false;
 
     public static Stage stage;
 

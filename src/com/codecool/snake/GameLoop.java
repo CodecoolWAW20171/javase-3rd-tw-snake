@@ -4,6 +4,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import javafx.animation.AnimationTimer;
 
+
 public class GameLoop extends AnimationTimer {
 
     // This gets called every 1/60 seconds
@@ -26,5 +27,15 @@ public class GameLoop extends AnimationTimer {
     public void stop() {
         super.stop();
         Globals.snake.destroy();
+    }
+
+    public void pause() {
+        if(Globals.isGamePaused) {
+            super.stop();
+            Globals.isGamePaused = !Globals.isGamePaused;
+        } else {
+            super.start();
+            Globals.isGamePaused = !Globals.isGamePaused;
+        }
     }
 }
