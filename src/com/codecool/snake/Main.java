@@ -34,7 +34,7 @@ public class Main extends Application {
         Globals.menuInfo.setDisable(true);
 
         Globals.menuHealth = new Menu();
-        Globals.menuHealth.setText("Health: " + Globals.health);
+        Globals.menuHealth.setText("Health: " + Globals.snake.health);
         Globals.menuHealth.setDisable(true);
 
         Globals.menuCloseItem.setOnAction(event -> {

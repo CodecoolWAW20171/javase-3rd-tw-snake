@@ -10,7 +10,7 @@ public class Modals {
         System.out.println("Game Over");
         alert.setTitle("Game Over");
         alert.setHeaderText("Game Over");
-        alert.setContentText("Your Health:\n" + Globals.health + "\nDo you want try again?");
+        alert.setContentText("Your Health:\n" + Globals.snake.health + "\nDo you want try again?");
 
         ButtonType yesButton = new ButtonType("YES");
         ButtonType noButton = new ButtonType("NO");

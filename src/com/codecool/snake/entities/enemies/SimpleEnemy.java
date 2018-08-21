@@ -16,6 +16,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     private Point2D heading;
     private static final int damage = 10;
+    private static final int distanceFromSnake = 15;
 
     public SimpleEnemy(Pane pane) {
         super(pane);
@@ -25,8 +26,8 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
         int speed = 1;
         Random rnd = new Random();
         double newX = 0, newY = 0;
-        while (Math.abs(Math.round(newX) - Math.round(Globals.snake.getX())) < 15
-                && Math.abs(Math.round(newY) - Math.round(Globals.snake.getY())) < 15
+        while (Math.abs(Math.round(newX) - Math.round(Globals.snake.getX())) < distanceFromSnake
+                && Math.abs(Math.round(newY) - Math.round(Globals.snake.getY())) < distanceFromSnake
                 || newX == 0 && newY == 0) {
             newX = (rnd.nextDouble() * Globals.WINDOW_WIDTH);
             newY = (rnd.nextDouble() * Globals.WINDOW_HEIGHT);
@@ -56,6 +57,6 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     @Override
     public String getMessage() {
-        return "10 damage";
+        return damage + " damage";
     }
 }

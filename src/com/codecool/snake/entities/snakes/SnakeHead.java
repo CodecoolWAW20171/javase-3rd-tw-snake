@@ -22,14 +22,15 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private static final float speed = 2;
     private static final float turnRate = 2;
+    private static final int startingHealth = 100;
+    private static final int startingTailParts = 4;
+    public int health;
+    public int score = 0;
     public boolean leftKeyDown = false;
     public boolean rightKeyDown = false;
     private GameEntity tail = this; // the last element. Needed to know where to add the next part.
-    private int health = 100;
     private boolean player;
     private ArrayList<SnakeBody> body = new ArrayList<SnakeBody>();
-    public int score = 4;
-    public boolean isInvincible = false;
 
 
     public SnakeHead(Pane pane, int xc, int yc, boolean player) {
@@ -38,13 +39,12 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(yc);
         if (player) setImage(Globals.snakeHead);
         else setImage(Globals.secSnakeHead);
-        health = 100;
-        Globals.health = getHealth();
         tail = this;
+        health = startingHealth;
         pane.getChildren().add(this);
         this.player = player;
 
-        addPart(4);
+        addPart(startingTailParts);
     }
 
     public void step() {
@@ -116,17 +116,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         this.health = health;
     }
 
-    public void beInvincible() {
-        this.isInvincible = true;
-        long expectedTime = System.currentTimeMillis() + 5000;
-        if (System.currentTimeMillis() == expectedTime) {
-            this.isInvincible = false;
-        }
-    }
-
     public void changeHealth(int diff) {
         health += diff;
         setHealth(health);
-        Globals.health = getHealth();
+        Globals.menuHealth.setText(Integer.toString(health));
     }
 }

@@ -53,8 +53,6 @@ public class Globals {
     public static MenuItem menuPauseItem;
     public static MenuItem menuCloseItem;
 
-    public static int health;
-
     static {
         gameObjects = new LinkedList<>();
         newGameObjects = new LinkedList<>();
