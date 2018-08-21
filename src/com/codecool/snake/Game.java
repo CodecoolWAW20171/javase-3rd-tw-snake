@@ -15,10 +15,7 @@ public class Game extends Pane {
         new SimpleEnemy(this);
         new SimpleEnemy(this);
         new SimpleEnemy(this);
-        new SimpleEnemy(this);
 
-        new SimplePowerup(this);
-        new SimplePowerup(this);
         new SimplePowerup(this);
         new SimplePowerup(this);
     }
@@ -31,6 +28,8 @@ public class Game extends Pane {
                 case RIGHT: Globals.snake.rightKeyDown  = true; break;
                 case A: Globals.secSnake.leftKeyDown = true; break;
                 case D: Globals.secSnake.rightKeyDown = true; break;
+                case P: Globals.gameLoop.pause(); break;
+                case R: Globals.gameLoop.restart(); break;
             }
         });
 

@@ -6,11 +6,15 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -22,7 +26,9 @@ public class SnakeHead extends GameEntity implements Animatable {
     private int health = 100;
     private boolean player;
     private ArrayList<SnakeBody> body = new ArrayList<SnakeBody>();
-    public int score;
+    public int score = 4;
+    public boolean isInvincible = false;
+
 
     public SnakeHead(Pane pane, int xc, int yc, boolean player) {
         super(pane);
@@ -63,6 +69,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
+            health = 0;
             score = body.size();
             for (GameEntity entity : Globals.getGameObjects()) {
                 if (body.indexOf(entity) != -1) {
@@ -79,6 +86,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
+
+
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
             Image image;
@@ -86,6 +95,18 @@ public class SnakeHead extends GameEntity implements Animatable {
             else image = Globals.secSnakeBody;
             tail = new SnakeBody(pane, tail, image);
             body.add((SnakeBody) tail);
+        }
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
+
+    public void beInvincible() {
+        this.isInvincible = true;
+        long expectedTime = System.currentTimeMillis() + 5000;
+        if (System.currentTimeMillis() == expectedTime) {
+            this.isInvincible = false;
         }
     }
 

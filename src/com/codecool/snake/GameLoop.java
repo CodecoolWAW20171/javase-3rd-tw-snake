@@ -2,28 +2,132 @@ package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.HealingPowerup;
+import com.codecool.snake.entities.powerups.InvincibilityPowerup;
+import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
+
+import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
 
     // This gets called every 1/60 seconds
     @Override
     public void handle(long now) {
-        for (GameEntity gameObject : Globals.gameObjects) {
-            if (gameObject instanceof Animatable) {
-                Animatable animObject = (Animatable)gameObject;
-                animObject.step();
-            }
-        }
-        if (Globals.secSnake != null)
-            if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < 15) &&
-                (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < 15)) {
-                Globals.gameLoop.stop();
-            }
+        runAnimations();
+        checkSnakesCollisions();
+        checkGameOverStatus();
+        generateRandomPowerups();
+
         Globals.gameObjects.addAll(Globals.newGameObjects);
         Globals.newGameObjects.clear();
 
         Globals.gameObjects.removeAll(Globals.oldGameObjects);
         Globals.oldGameObjects.clear();
     }
+
+    private void runAnimations() {
+        for (GameEntity gameObject : Globals.gameObjects) {
+            if (gameObject instanceof Animatable) {
+                Animatable animObject = (Animatable)gameObject;
+                animObject.step();
+            }
+        }
+    }
+
+    private void checkSnakesCollisions() {
+        if (Globals.secSnake != null)
+            if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < 15) &&
+                    (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < 15)) {
+                handleGameOver();
+            }
+    }
+
+    private void checkGameOverStatus() {
+        if(Globals.snake.getHealth() <= 0 && Globals.secSnake.getHealth() <= 0)
+            handleGameOver();
+    }
+
+    private void handleGameOver() {
+        Globals.gameLoop.stop();
+        Alert alert = showGameOverModal();
+
+        Platform.runLater(alert::showAndWait);
+        Globals.gameLoop.stop();
+    }
+
+    private void generateRandomPowerups() {
+        Random rand = new Random();
+        if (rand.nextInt(1000) < 2) {
+            Globals.addGameObject(new SimpleEnemy(Globals.gamePane));
+        } if (rand.nextInt(1000) < 2) {
+            Globals.addGameObject((new SimplePowerup(Globals.gamePane)));
+        } if (rand.nextInt(1000) < 1) {
+            Globals.addGameObject(new HealingPowerup(Globals.gamePane));
+        } if (rand.nextInt(1500) < 1) {
+            Globals.addGameObject(new InvincibilityPowerup(Globals.gamePane));
+        }
+    }
+
+    private Alert showGameOverModal() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText("Green snake score: " + Globals.snake.score + "\nRed snake score: " + Globals.secSnake.score);
+        alert.setContentText("Do you want try again?");
+
+        ButtonType yesButton = new ButtonType("YES");
+        ButtonType noButton = new ButtonType("NO");
+
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(noButton, yesButton);
+
+        alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> {
+            runNewGame();
+        });
+
+        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
+            System.exit(0);
+        });
+
+        return alert;
+    }
+
+    private void runNewGame() {
+        Game game = new Game();
+
+        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.stage.show();
+        game.start();
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        Globals.snake.destroy();
+    }
+
+    void pause() {
+        if(!Globals.isGamePaused) {
+            super.stop();
+            Globals.isGamePaused = !Globals.isGamePaused;
+        } else {
+            super.start();
+            Globals.isGamePaused = !Globals.isGamePaused;
+        }
+    }
+
+    void restart() {
+        Globals.gameLoop.stop();
+        Game game = new Game();
+        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.stage.show();
+        game.start();
+    }
+
 }
