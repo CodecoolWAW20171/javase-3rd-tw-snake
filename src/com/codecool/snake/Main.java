@@ -1,7 +1,9 @@
 package com.codecool.snake;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -61,6 +63,10 @@ public class Main extends Application {
         primaryStage.setTitle("Snake Game");
         primaryStage.setScene(new Scene(Globals.vBox, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         primaryStage.show();
-        game.start();
+
+        Modals modal = new Modals();
+        Alert alert = modal.selectGameMode(game);
+
+        Platform.runLater(alert::showAndWait);
     }
 }
