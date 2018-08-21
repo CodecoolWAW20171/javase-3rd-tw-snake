@@ -1,7 +1,7 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.HealingPowerup;
 import com.codecool.snake.entities.powerups.InvincibilityPowerup;
@@ -11,8 +11,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
-
+import javafx.scene.layout.VBox;
 import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
@@ -56,9 +55,9 @@ public class GameLoop extends AnimationTimer {
 
     private void handleGameOver() {
         Globals.gameLoop.stop();
-        Alert alert = showGameOverModal();
+        Modals modals = new Modals();
 
-        Platform.runLater(alert::showAndWait);
+        Platform.runLater(modals.showGameOverModal()::showAndWait);
         Globals.gameLoop.stop();
     }
 
@@ -73,37 +72,6 @@ public class GameLoop extends AnimationTimer {
         } if (rand.nextInt(1500) < 1) {
             Globals.addGameObject(new InvincibilityPowerup(Globals.gamePane));
         }
-    }
-
-    private Alert showGameOverModal() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Game Over");
-        alert.setHeaderText("Green snake score: " + Globals.snake.score + "\nRed snake score: " + Globals.secSnake.score);
-        alert.setContentText("Do you want try again?");
-
-        ButtonType yesButton = new ButtonType("YES");
-        ButtonType noButton = new ButtonType("NO");
-
-        alert.getButtonTypes().clear();
-        alert.getButtonTypes().addAll(noButton, yesButton);
-
-        alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> {
-            runNewGame();
-        });
-
-        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
-            System.exit(0);
-        });
-
-        return alert;
-    }
-
-    private void runNewGame() {
-        Game game = new Game();
-
-        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-        Globals.stage.show();
-        game.start();
     }
 
     @Override
@@ -122,10 +90,12 @@ public class GameLoop extends AnimationTimer {
         }
     }
 
-    void restart() {
+    public void restart() {
         Globals.gameLoop.stop();
         Game game = new Game();
-        Globals.stage.setScene(new Scene(game, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
+        Globals.vBox = new VBox();
+        Globals.vBox.getChildren().addAll(Globals.menuBar, game);
+        Globals.stage.setScene(new Scene(Globals.vBox, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
         Globals.stage.show();
         game.start();
     }

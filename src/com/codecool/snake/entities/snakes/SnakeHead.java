@@ -1,20 +1,22 @@
 package com.codecool.snake.entities.snakes;
 
-import com.codecool.snake.Game;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
-import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.Modals;
 import com.codecool.snake.Utils;
+import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-
 import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Pane;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -36,6 +38,9 @@ public class SnakeHead extends GameEntity implements Animatable {
         setY(yc);
         if (player) setImage(Globals.snakeHead);
         else setImage(Globals.secSnakeHead);
+        health = 100;
+        Globals.health = getHealth();
+        tail = this;
         pane.getChildren().add(this);
         this.player = player;
 
@@ -55,7 +60,6 @@ public class SnakeHead extends GameEntity implements Animatable {
         Point2D heading = Utils.directionToVector(dir, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
-
         // check if collided with an enemy or a powerup
         for (GameEntity entity : Globals.getGameObjects()) {
             if (getBoundsInParent().intersects(entity.getBoundsInParent())) {
@@ -85,7 +89,13 @@ public class SnakeHead extends GameEntity implements Animatable {
             }
         }
     }
+//            Globals.gameLoop.stop();
+//            Modals modal = new Modals();
+//            Alert alert = modal.showGameOverModal();
+//
+//            Platform.runLater(alert::showAndWait);
 
+//        Globals.menuHealth.setText("Health: " + Globals.health);
 
 
     public void addPart(int numParts) {
@@ -102,6 +112,10 @@ public class SnakeHead extends GameEntity implements Animatable {
         return this.health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public void beInvincible() {
         this.isInvincible = true;
         long expectedTime = System.currentTimeMillis() + 5000;
@@ -112,5 +126,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
+        setHealth(health);
+        Globals.health = getHealth();
     }
 }
