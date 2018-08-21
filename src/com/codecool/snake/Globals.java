@@ -50,6 +50,7 @@ public class Globals {
     public static Menu menuHealth;
 
     public static MenuItem menuRestartItem;
+    public static MenuItem menuModeItem;
     public static MenuItem menuPauseItem;
     public static MenuItem menuCloseItem;
 

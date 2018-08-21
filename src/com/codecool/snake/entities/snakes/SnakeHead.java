@@ -28,9 +28,10 @@ public class SnakeHead extends GameEntity implements Animatable {
     public int score = 0;
     public boolean leftKeyDown = false;
     public boolean rightKeyDown = false;
-    private GameEntity tail = this; // the last element. Needed to know where to add the next part.
+    private GameEntity tail; // the last element. Needed to know where to add the next part.
     private boolean player;
-    private ArrayList<SnakeBody> body = new ArrayList<SnakeBody>();
+    private ArrayList<SnakeBody> body = new ArrayList<>();
+    private String name;
 
 
     public SnakeHead(Pane pane, int xc, int yc, boolean player) {
@@ -87,6 +88,8 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
         }
+        setHealth(health);
+        Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() + " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
     }
 //            Globals.gameLoop.stop();
 //            Modals modal = new Modals();
@@ -118,7 +121,14 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
-        setHealth(health);
-        Globals.menuHealth.setText(Integer.toString(health));
+        //setHealth(health);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -10,12 +10,17 @@ public class Game extends Pane {
     public void start() {
         if(Globals.singleplayer) {
             Globals.snake = new SnakeHead(this, 500, 500, true);
+            Globals.snake.setName("Player 1");
             Globals.secSnake = new SnakeHead(this, -100, -100, false);
+            Globals.secSnake.setName("Player 2");
         }
         else {
             Globals.snake = new SnakeHead(this, 750, 500, true);
+            Globals.snake.setName("Player 1");
             Globals.secSnake = new SnakeHead(this, 250, 500, false);
+            Globals.secSnake.setName("Player 2");
         }
+        Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() + " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
 
         new SimpleEnemy(this);
         new SimpleEnemy(this);
