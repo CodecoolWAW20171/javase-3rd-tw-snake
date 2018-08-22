@@ -23,12 +23,31 @@ public class GameLoop extends AnimationTimer {
         checkSnakesCollisions();
         checkGameOverStatus();
         generateRandomPowerups();
+        updateHealthBarStatus();
+        updateGameObjectsStatus();
+    }
 
+    @Override
+    public void stop() {
+        super.stop();
+        Globals.snake.destroy();
+    }
+
+    private void updateGameObjectsStatus() {
         Globals.gameObjects.addAll(Globals.newGameObjects);
         Globals.newGameObjects.clear();
 
         Globals.gameObjects.removeAll(Globals.oldGameObjects);
         Globals.oldGameObjects.clear();
+    }
+
+    private void updateHealthBarStatus() {
+        if (!Globals.singleplayer) {
+            Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() +
+                    " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
+        } else {
+            Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth());
+        }
     }
 
     private void runAnimations() {
@@ -49,6 +68,13 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void checkGameOverStatus() {
+        if (Globals.snake.getHealth() <= 0)
+            if (Globals.secSnake != null)
+                if (Globals.secSnake.getHealth() <= 0)
+                    handleGameOver();
+                else {
+                    handleGameOver();
+                }
         if(Globals.snake.getHealth() <= 0 && Globals.secSnake.getHealth() <= 0)
             handleGameOver();
     }
@@ -72,12 +98,6 @@ public class GameLoop extends AnimationTimer {
         } if (rand.nextInt(1500) < 1) {
             Globals.addGameObject(new ScorePowerup(Globals.gamePane));
         }
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
-        Globals.snake.destroy();
     }
 
     void pause() {
