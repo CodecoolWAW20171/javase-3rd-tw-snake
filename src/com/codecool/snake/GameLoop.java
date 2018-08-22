@@ -9,14 +9,13 @@ import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
 
-    // This gets called every 1/60 seconds
+    private static final int DISTANCE_BETWEEN_SNAKE_HEADS = 15;
+
     @Override
     public void handle(long now) {
         runAnimations();
@@ -61,8 +60,8 @@ public class GameLoop extends AnimationTimer {
 
     private void checkSnakesCollisions() {
         if (Globals.secSnake != null)
-            if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < 15) &&
-                    (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < 15)) {
+            if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < DISTANCE_BETWEEN_SNAKE_HEADS) &&
+                    (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < DISTANCE_BETWEEN_SNAKE_HEADS)) {
                 handleGameOver();
             }
     }
@@ -110,7 +109,7 @@ public class GameLoop extends AnimationTimer {
         }
     }
 
-    public void restart() {
+    void restart() {
         Globals.gameLoop.stop();
         Game game = new Game();
         Globals.vBox = new VBox();
