@@ -16,7 +16,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     private Point2D heading;
     private static final int damage = 10;
-    private static final int distanceFromSnake = 15;
+    private static final int distanceFromSnake = 50;
 
     public SimpleEnemy(Pane pane) {
         super(pane);
