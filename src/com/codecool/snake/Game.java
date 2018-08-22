@@ -20,7 +20,6 @@ public class Game extends Pane {
             Globals.secSnake = new SnakeHead(this, 250, 500, false);
             Globals.secSnake.setName("Player 2");
         }
-        Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() + " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
 
         new SimpleEnemy(this);
         new SimpleEnemy(this);
