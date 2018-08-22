@@ -21,7 +21,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     public boolean rightKeyDown = false;
     private GameEntity tail = this;
     private boolean player;
-    private ArrayList<SnakeBody> body = new ArrayList<>();
+    private ArrayList<GameEntity> body = new ArrayList<>();
     private String name;
 
 
@@ -75,12 +75,11 @@ public class SnakeHead extends GameEntity implements Animatable {
     private void checkGameOverCondition() {
         if (isOutOfBounds() || health <= 0) {
             health = 0;
-            for (GameEntity entity : Globals.getGameObjects()) {
-                if (body.indexOf(entity) != -1 || entity.equals(this)) {
+            for (GameEntity entity : Globals.getGameObjects())
+                if ((body.indexOf(entity) != -1) || entity.equals(this)) {
                     Globals.removeGameObject(entity);
                     entity.destroy();
                 }
-            }
         }
     }
 
@@ -92,7 +91,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             if (player) image = Globals.snakeBody;
             else image = Globals.secSnakeBody;
             tail = new SnakeBody(pane, tail, image);
-            body.add((SnakeBody) tail);
+            body.add(tail);
         }
     }
 

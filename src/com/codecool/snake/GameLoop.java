@@ -17,6 +17,7 @@ public class GameLoop extends AnimationTimer {
     private static final int chanceForSimpleEnemiesAndPowerups = 1000;
     private static final int chanceIn1000ForSimpleEnemiesAndPowerups = 2;
     private static final int chanceIn1000ForBetterPowerups = 1;
+    private static final int DISTANCE_BETWEEN_SNAKE_HEADS = 15;
 
     // This gets called every 1/60 seconds
     @Override
@@ -57,8 +58,8 @@ public class GameLoop extends AnimationTimer {
 
     private void checkSnakesCollisions() {
         if (Globals.secSnake != null)
-            if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < 15) &&
-                    (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < 15)) {
+            if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < DISTANCE_BETWEEN_SNAKE_HEADS) &&
+                    (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < DISTANCE_BETWEEN_SNAKE_HEADS)) {
                 handleGameOver();
             }
     }
@@ -112,7 +113,7 @@ public class GameLoop extends AnimationTimer {
         }
     }
 
-    public void restart() {
+    void restart() {
         Globals.gameLoop.stop();
         Game game = new Game();
         Globals.vBox = new VBox();
