@@ -11,32 +11,21 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-// a simple enemy TODO make better ones.
 public class SimpleEnemy extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
     private static final int damage = 10;
     private static final int distanceFromSnake = 50;
+    private static final int SPEED = 1;
 
     public SimpleEnemy(Pane pane) {
         super(pane);
 
         setImage(Globals.simpleEnemy);
         pane.getChildren().add(this);
-        int speed = 1;
         Random rnd = new Random();
-        double newX = 0, newY = 0;
-        while (Math.abs(Math.round(newX) - Math.round(Globals.snake.getX())) < distanceFromSnake
-                && Math.abs(Math.round(newY) - Math.round(Globals.snake.getY())) < distanceFromSnake
-                || newX == 0 && newY == 0) {
-            newX = (rnd.nextDouble() * Globals.WINDOW_WIDTH);
-            newY = (rnd.nextDouble() * Globals.WINDOW_HEIGHT);
-        }
-        setX(newX);
-        setY(newY);
-        double direction = rnd.nextDouble() * 360;
-        setRotate(direction);
-        heading = Utils.directionToVector(direction, speed);
+        setPosition(rnd);
+        setDirection(rnd);
     }
 
     @Override
@@ -58,5 +47,23 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     @Override
     public String getMessage() {
         return damage + " damage";
+    }
+
+    private void setPosition(Random rnd) {
+        double newX = 0, newY = 0;
+        while (Math.abs(Math.round(newX) - Math.round(Globals.snake.getX())) < distanceFromSnake
+                && Math.abs(Math.round(newY) - Math.round(Globals.snake.getY())) < distanceFromSnake
+                || newX == 0 && newY == 0) {
+            newX = (rnd.nextDouble() * Globals.WINDOW_WIDTH);
+            newY = (rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        }
+        setX(newX);
+        setY(newY);
+    }
+
+    private void setDirection(Random rnd) {
+        double direction = rnd.nextDouble() * 360;
+        setRotate(direction);
+        heading = Utils.directionToVector(direction, SPEED);
     }
 }
