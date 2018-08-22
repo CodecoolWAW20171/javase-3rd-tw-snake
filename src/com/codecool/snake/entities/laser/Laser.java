@@ -14,16 +14,16 @@ public class Laser extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
 
-    public Laser(Pane pane) {
+    public Laser(Pane pane, SnakeHead snake) {
         super(pane);
 
         setImage(Globals.laser);
         pane.getChildren().add(this);
         int speed = 3;
 
-        setX(Globals.snake.getX());
-        setY(Globals.snake.getY());
-        double direction = Globals.snake.getRotate();
+        setX(snake.getX());
+        setY(snake.getY());
+        double direction = snake.getRotate();
         setRotate(direction);
         heading = Utils.directionToVector(direction, speed);
     }

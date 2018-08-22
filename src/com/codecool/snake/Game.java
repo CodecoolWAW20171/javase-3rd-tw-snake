@@ -61,7 +61,8 @@ class Game extends Pane {
                 case D: if(!Globals.singlePlayer) Globals.secSnake.rightKeyDown = true; break;
                 case P: Globals.gameLoop.pause(); break;
                 case R: Globals.gameLoop.restart(); break;
-                case UP: Globals.addGameObject(new Laser(Globals.gamePane));
+                case UP: Globals.addGameObject(new Laser(Globals.gamePane, Globals.snake)); break;
+                case W: if(!Globals.singlePlayer) {Globals.addGameObject(new Laser(Globals.gamePane, Globals.secSnake));} break;
             }
         });
     }
