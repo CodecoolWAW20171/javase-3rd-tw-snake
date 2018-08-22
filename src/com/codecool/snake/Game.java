@@ -3,7 +3,6 @@ package com.codecool.snake;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.laser.Laser;
-import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
@@ -58,6 +57,7 @@ class Game extends Pane {
                 case D: if(!Globals.singlePlayer) Globals.secSnake.rightKeyDown = true; break;
                 case P: Globals.gameLoop.pause(); break;
                 case R: Globals.gameLoop.restart(); break;
+                case UP: Globals.addGameObject(new Laser(Globals.gamePane));
             }
         });
     }
