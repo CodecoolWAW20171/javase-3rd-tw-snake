@@ -9,6 +9,10 @@ class Game extends Pane {
 
     private static final int NUM_OF_ENEMIES = 5;
     private static final int NUM_OF_BERRIES = 2;
+    private static final int SNAKE_Y_POSITION = 500;
+    private static final int PLAYER_1_X_POSITION_SINGLE = 500;
+    private static final int PLAYER_1_X_POSITION_MULTI = 750;
+    private static final int PLAYER_2_X_POSITION = 250;
 
     void start() {
         spawnSnakes();
@@ -24,15 +28,16 @@ class Game extends Pane {
     }
 
     private void spawnSnakes() {
+        int newPos;
         if (Globals.singlePlayer) {
-            Globals.snake = new SnakeHead(this, 500, 500, true);
-            Globals.snake.setName("Player 1");
+            newPos = PLAYER_1_X_POSITION_SINGLE;
         } else {
-            Globals.snake = new SnakeHead(this, 750, 500, true);
-            Globals.snake.setName("Player 1");
-            Globals.secSnake = new SnakeHead(this, 250, 500, false);
+            newPos = PLAYER_1_X_POSITION_MULTI;
+            Globals.secSnake = new SnakeHead(this, PLAYER_2_X_POSITION, SNAKE_Y_POSITION, false);
             Globals.secSnake.setName("Player 2");
         }
+        Globals.snake = new SnakeHead(this, newPos, SNAKE_Y_POSITION, true);
+        Globals.snake.setName("Player 1");
     }
 
     private void spawnEnemies() {
