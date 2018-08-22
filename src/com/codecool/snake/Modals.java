@@ -31,7 +31,7 @@ class Modals {
 
         alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> Globals.gameLoop.restart());
 
-        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> alert.close());
+        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> System.exit(0));
 
         return alert;
     }
