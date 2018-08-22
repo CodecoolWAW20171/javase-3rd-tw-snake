@@ -66,14 +66,12 @@ public class GameLoop extends AnimationTimer {
 
     private void checkGameOverStatus() {
         if (Globals.snake.getHealth() <= 0)
-            if (Globals.secSnake != null)
+            if (Globals.secSnake != null) {
                 if (Globals.secSnake.getHealth() <= 0)
                     handleGameOver();
-                else {
-                    handleGameOver();
-                }
-        if(Globals.snake.getHealth() <= 0 && Globals.secSnake.getHealth() <= 0)
-            handleGameOver();
+            } else {
+                handleGameOver();
+            }
     }
 
     private void handleGameOver() {
