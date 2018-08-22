@@ -1,7 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
@@ -24,7 +24,7 @@ class Game extends Pane {
     }
 
     private void spawnSnakes() {
-        if (Globals.singleplayer) {
+        if (Globals.singlePlayer) {
             Globals.snake = new SnakeHead(this, 500, 500, true);
             Globals.snake.setName("Player 1");
         } else {
@@ -43,7 +43,7 @@ class Game extends Pane {
 
     private void spawnBerries() {
         for (int i = 0; i < NUM_OF_BERRIES; i++) {
-            new SimplePowerup(this);
+            new SimplePowerUp(this);
         }
     }
 
@@ -52,8 +52,8 @@ class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.snake.leftKeyDown = true; break;
                 case RIGHT: Globals.snake.rightKeyDown  = true; break;
-                case A: if(!Globals.singleplayer) Globals.secSnake.leftKeyDown = true; break;
-                case D: if(!Globals.singleplayer) Globals.secSnake.rightKeyDown = true; break;
+                case A: if(!Globals.singlePlayer) Globals.secSnake.leftKeyDown = true; break;
+                case D: if(!Globals.singlePlayer) Globals.secSnake.rightKeyDown = true; break;
                 case P: Globals.gameLoop.pause(); break;
                 case R: Globals.gameLoop.restart(); break;
             }
@@ -65,8 +65,8 @@ class Game extends Pane {
             switch (event.getCode()) {
                 case LEFT:  Globals.snake.leftKeyDown = false; break;
                 case RIGHT: Globals.snake.rightKeyDown = false; break;
-                case A: if(!Globals.singleplayer) Globals.secSnake.leftKeyDown = false; break;
-                case D: if(!Globals.singleplayer) Globals.secSnake.rightKeyDown = false; break;
+                case A: if(!Globals.singlePlayer) Globals.secSnake.leftKeyDown = false; break;
+                case D: if(!Globals.singlePlayer) Globals.secSnake.rightKeyDown = false; break;
             }
         });
     }

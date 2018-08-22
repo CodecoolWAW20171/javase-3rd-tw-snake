@@ -12,10 +12,11 @@ import java.util.ArrayList;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
-    private static final float speed = 2;
-    private static final float turnRate = 2;
-    private static final int numberOfPartsToAddAtStart = 4;
-    public int health = 100;
+    private static final float SPEED = 2;
+    private static final float TURN_RATE = 2;
+    private static final int NUMBER_OF_PARTS_TO_ADD_AT_START = 4;
+    private static final int STARTING_HEALTH = 100;
+    public int health = STARTING_HEALTH;
     public int score = 0;
     public boolean leftKeyDown = false;
     public boolean rightKeyDown = false;
@@ -34,7 +35,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         pane.getChildren().add(this);
         this.player = player;
 
-        addPart(numberOfPartsToAddAtStart);
+        addPart(NUMBER_OF_PARTS_TO_ADD_AT_START);
     }
 
     public void step() {
@@ -47,15 +48,15 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private double setDirection() {
         double dir = getRotate();
-        if (leftKeyDown) return dir - turnRate;
-        if (rightKeyDown) return dir + turnRate;
+        if (leftKeyDown) return dir - TURN_RATE;
+        if (rightKeyDown) return dir + TURN_RATE;
         return dir;
     }
 
     private void moveToNewPos() {
         double direction = setDirection();
         setRotate(direction);
-        Point2D heading = Utils.directionToVector(direction, speed);
+        Point2D heading = Utils.directionToVector(direction, SPEED);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }

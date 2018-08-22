@@ -3,9 +3,9 @@ package com.codecool.snake;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.HealingPowerup;
-import com.codecool.snake.entities.powerups.ScorePowerup;
-import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.powerups.HealingPowerUp;
+import com.codecool.snake.entities.powerups.ScorePowerUp;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -14,9 +14,9 @@ import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
 
-    private static final int chanceForSimpleEnemiesAndPowerUps = 1000;
-    private static final int chanceIn1000ForSimpleEnemiesAndPowerUps = 2;
-    private static final int chanceIn1000ForBetterPowerUps = 1;
+    private static final int CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 1000;
+    private static final int CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 2;
+    private static final int CHANCE_IN_1000_FOR_BETTER_POWER_UPS = 1;
     private static final int DISTANCE_BETWEEN_SNAKE_HEADS = 15;
 
     // This gets called every 1/60 seconds
@@ -39,7 +39,7 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void updateHealthBarStatus() {
-        if (!Globals.singleplayer) {
+        if (!Globals.singlePlayer) {
             Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() +
                     " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
         } else {
@@ -84,14 +84,14 @@ public class GameLoop extends AnimationTimer {
 
     private void generateRandomPowerUps() {
         Random rand = new Random();
-        if (rand.nextInt(chanceForSimpleEnemiesAndPowerUps) < chanceIn1000ForSimpleEnemiesAndPowerUps) {
+        if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) {
             Globals.addGameObject(new SimpleEnemy(Globals.gamePane));
-        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerUps) < chanceIn1000ForSimpleEnemiesAndPowerUps) {
-            Globals.addGameObject((new SimplePowerup(Globals.gamePane)));
-        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerUps) < chanceIn1000ForBetterPowerUps) {
-            Globals.addGameObject(new HealingPowerup(Globals.gamePane));
-        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerUps) < chanceIn1000ForBetterPowerUps) {
-            Globals.addGameObject(new ScorePowerup(Globals.gamePane));
+        } if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) {
+            Globals.addGameObject((new SimplePowerUp(Globals.gamePane)));
+        } if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_BETTER_POWER_UPS) {
+            Globals.addGameObject(new HealingPowerUp(Globals.gamePane));
+        } if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_BETTER_POWER_UPS) {
+            Globals.addGameObject(new ScorePowerUp(Globals.gamePane));
         }
     }
 

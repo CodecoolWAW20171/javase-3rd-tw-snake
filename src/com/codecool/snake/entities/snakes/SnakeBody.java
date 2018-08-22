@@ -15,7 +15,7 @@ public class SnakeBody extends GameEntity implements Animatable {
 
     private GameEntity parent;
     private Queue<Vec2d> history = new LinkedList<>();
-    private static final int historySize = 10;
+    private static final int HISTORY_SIZE = 10;
 
     SnakeBody(Pane pane, GameEntity parent, Image image) {
         super(pane);
@@ -30,7 +30,7 @@ public class SnakeBody extends GameEntity implements Animatable {
         double yc = parent.getY();
         setX(xc);
         setY(yc);
-        for (int i = 0; i < historySize; i++) {
+        for (int i = 0; i < HISTORY_SIZE; i++) {
             history.add(new Vec2d(xc, yc));
         }
     }

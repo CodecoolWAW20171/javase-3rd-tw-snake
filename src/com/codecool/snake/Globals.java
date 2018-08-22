@@ -25,7 +25,7 @@ public class Globals {
     public static Image snakeBody = new Image("snake_body.png");
     public static Image secSnakeBody = new Image("sec_snake_body.png");
     public static Image simpleEnemy = new Image("simple_enemy.png");
-    public static Image powerupBerry = new Image("powerup_berry.png");
+    public static Image powerUpBerry = new Image("power_up_berry.png");
     public static Image medPack = new Image("med_pack.png");
     public static Image pill = new Image("pill.png");
 
@@ -37,7 +37,7 @@ public class Globals {
     static SnakeHead secSnake;
     static Pane gamePane;
     static boolean isGamePaused = false;
-    static boolean singleplayer;
+    static boolean singlePlayer;
 
     static Stage stage;
     public static Scene scene;
