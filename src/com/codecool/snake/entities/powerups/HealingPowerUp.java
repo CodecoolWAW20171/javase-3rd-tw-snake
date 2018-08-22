@@ -11,8 +11,8 @@ import java.util.Random;
 // a healing powerUp that heals the snake
 public class HealingPowerUp extends GameEntity implements Interactable {
 
-    private static final int snakeStartingHealth = 100;
-    private static final int healingPoints = 10;
+    private static final int SNAKE_STARTING_HEALTH = 100;
+    private static final int HEALING_POINTS = 10;
 
     public HealingPowerUp(Pane pane) {
         super(pane);
@@ -26,8 +26,8 @@ public class HealingPowerUp extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        if (snakeHead.getHealth() != snakeStartingHealth) {
-            snakeHead.changeHealth(healingPoints);
+        if (snakeHead.getHealth() != SNAKE_STARTING_HEALTH) {
+            snakeHead.changeHealth(HEALING_POINTS);
         }
         destroy();
     }

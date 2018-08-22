@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class ScorePowerUp extends GameEntity implements Interactable {
 
-    private static final int scoreBoost = 10;
+    private static final int SCORE_BOOST = 10;
 
     public ScorePowerUp(Pane pane) {
         super(pane);
@@ -24,7 +24,7 @@ public class ScorePowerUp extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.changeScore(scoreBoost);
+        snakeHead.changeScore(SCORE_BOOST);
         destroy();
     }
 
