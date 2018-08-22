@@ -14,8 +14,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private static final float SPEED = 2;
     private static final float TURN_RATE = 2;
-    private static final int NUMBER_OF_PARTS_TO_ADD_AT_START = 4;
-    private static final int STARTING_HEALTH = 100;
+    private final int STARTING_HEALTH = 100;
     private int health = STARTING_HEALTH;
     public int score = 0;
     public boolean leftKeyDown = false;
@@ -35,6 +34,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         pane.getChildren().add(this);
         this.player = player;
 
+        int NUMBER_OF_PARTS_TO_ADD_AT_START = 4;
         addPart(NUMBER_OF_PARTS_TO_ADD_AT_START);
     }
 

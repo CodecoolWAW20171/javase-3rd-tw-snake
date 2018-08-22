@@ -7,13 +7,6 @@ import javafx.scene.layout.Pane;
 
 class Game extends Pane {
 
-    private static final int NUM_OF_ENEMIES = 5;
-    private static final int NUM_OF_BERRIES = 2;
-    private static final int SNAKE_Y_POSITION = 500;
-    private static final int PLAYER_1_X_POSITION_SINGLE = 500;
-    private static final int PLAYER_1_X_POSITION_MULTI = 750;
-    private static final int PLAYER_2_X_POSITION = 250;
-
     void start() {
         spawnSnakes();
         spawnEnemies();
@@ -29,10 +22,14 @@ class Game extends Pane {
 
     private void spawnSnakes() {
         int newPos;
+        int SNAKE_Y_POSITION = 500;
         if (Globals.singlePlayer) {
+            int PLAYER_1_X_POSITION_SINGLE = 500;
             newPos = PLAYER_1_X_POSITION_SINGLE;
         } else {
+            int PLAYER_1_X_POSITION_MULTI = 750;
             newPos = PLAYER_1_X_POSITION_MULTI;
+            int PLAYER_2_X_POSITION = 250;
             Globals.secSnake = new SnakeHead(this, PLAYER_2_X_POSITION, SNAKE_Y_POSITION, false);
             Globals.secSnake.setName("Player 2");
         }
@@ -41,12 +38,14 @@ class Game extends Pane {
     }
 
     private void spawnEnemies() {
+        int NUM_OF_ENEMIES = 5;
         for (int i = 0; i < NUM_OF_ENEMIES; i++) {
             new SimpleEnemy(this);
         }
     }
 
     private void spawnBerries() {
+        int NUM_OF_BERRIES = 2;
         for (int i = 0; i < NUM_OF_BERRIES; i++) {
             new SimplePowerUp(this);
         }

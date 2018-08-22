@@ -14,11 +14,6 @@ import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
 
-    private static final int CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 1000;
-    private static final int CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 2;
-    private static final int CHANCE_IN_1000_FOR_BETTER_POWER_UPS = 1;
-    private static final int DISTANCE_BETWEEN_SNAKE_HEADS = 15;
-
     // This gets called every 1/60 seconds
     @Override
     public void handle(long now) {
@@ -57,6 +52,7 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void checkSnakesCollisions() {
+        int DISTANCE_BETWEEN_SNAKE_HEADS = 15;
         if (Globals.secSnake != null)
             if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < DISTANCE_BETWEEN_SNAKE_HEADS) &&
                     (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < DISTANCE_BETWEEN_SNAKE_HEADS)) {
@@ -84,11 +80,15 @@ public class GameLoop extends AnimationTimer {
 
     private void generateRandomPowerUps() {
         Random rand = new Random();
+        int CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 1000;
+        int CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 2;
         if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) {
             Globals.addGameObject(new SimpleEnemy(Globals.gamePane));
         } if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) {
             Globals.addGameObject((new SimplePowerUp(Globals.gamePane)));
-        } if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_BETTER_POWER_UPS) {
+        }
+        int CHANCE_IN_1000_FOR_BETTER_POWER_UPS = 1;
+        if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_BETTER_POWER_UPS) {
             Globals.addGameObject(new HealingPowerUp(Globals.gamePane));
         } if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_BETTER_POWER_UPS) {
             Globals.addGameObject(new ScorePowerUp(Globals.gamePane));
