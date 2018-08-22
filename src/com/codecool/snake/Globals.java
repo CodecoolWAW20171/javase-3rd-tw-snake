@@ -18,7 +18,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-// class for holding all static stuff
 public class Globals {
 
     public static final double WINDOW_WIDTH = 1000;
@@ -29,36 +28,34 @@ public class Globals {
     public static Image snakeBody = new Image("snake_body.png");
     public static Image secSnakeBody = new Image("sec_snake_body.png");
     public static Image simpleEnemy = new Image("simple_enemy.png");
-    public static Image powerupBerry = new Image("powerup_berry.png");
+    public static Image powerUpBerry = new Image("power_up_berry.png");
     public static Image medPack = new Image("med_pack.png");
     public static Image pill = new Image("pill.png");
     public static Image laser = new Image("laser.png");
     //.. put here the other images you want to use
 
-    public static List<GameEntity> gameObjects;
-    public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
-    public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
-    public static GameLoop gameLoop;
+    static List<GameEntity> gameObjects;
+    static List<GameEntity> newGameObjects;
+    static List<GameEntity> oldGameObjects;
+    static GameLoop gameLoop;
     public static SnakeHead snake;
-    public static SnakeHead secSnake;
-    public static List<SimpleEnemy> enemys;
-    public static List<Laser> lasers;
-    public static Pane gamePane;
-    public static boolean isGamePaused = false;
-    public static boolean singleplayer;
+    static SnakeHead secSnake;
+    static Pane gamePane;
+    static boolean isGamePaused = false;
+    static boolean singlePlayer;
 
-    public static Stage stage;
+    static Stage stage;
     public static Scene scene;
-    public static VBox vBox;
-    public static MenuBar menuBar;
-    public static Menu menu;
-    public static Menu menuInfo;
-    public static Menu menuHealth;
+    static VBox vBox;
+    static MenuBar menuBar;
+    static Menu menu;
+    static Menu menuInfo;
+    static Menu menuHealth;
 
-    public static MenuItem menuRestartItem;
-    public static MenuItem menuModeItem;
-    public static MenuItem menuPauseItem;
-    public static MenuItem menuCloseItem;
+    static MenuItem menuRestartItem;
+    static MenuItem menuModeItem;
+    static MenuItem menuPauseItem;
+    static MenuItem menuCloseItem;
 
     static {
         gameObjects = new LinkedList<>();

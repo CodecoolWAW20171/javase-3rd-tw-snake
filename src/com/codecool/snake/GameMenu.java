@@ -4,8 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
-public class GameMenu {
-    public void generateMenu(Game game) {
+class GameMenu {
+    void generateMenu(Game game) {
         Globals.vBox = new VBox();
         Globals.menuBar = new MenuBar();
         Globals.menu = new Menu("Menu");
@@ -21,9 +21,7 @@ public class GameMenu {
         Globals.menuHealth = new Menu();
         Globals.menuHealth.setDisable(false);
 
-        Globals.menuCloseItem.setOnAction(event -> {
-            System.exit(0);
-        });
+        Globals.menuCloseItem.setOnAction(event -> System.exit(0));
 
         Globals.menuPauseItem.setOnAction(event -> {
             Globals.gameLoop.pause();
@@ -34,12 +32,15 @@ public class GameMenu {
             }
         });
 
-        Globals.menuRestartItem.setOnAction(event -> {
-            Globals.gameLoop.restart();
-        });
+        Globals.menuRestartItem.setOnAction(event -> Globals.gameLoop.restart());
 
         Globals.menuModeItem.setOnAction(event -> {
             Modals modal = new Modals();
+            try {
+                Globals.gameLoop.stop();
+            } catch (NullPointerException e) {
+                System.out.println(e);
+            }
             Alert alert = modal.selectGameMode(game);
             Platform.runLater(alert::showAndWait);
         });

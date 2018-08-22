@@ -1,9 +1,7 @@
 package com.codecool.snake.entities.snakes;
 
 import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.entities.GameEntity;
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -17,9 +15,9 @@ public class SnakeBody extends GameEntity implements Animatable {
 
     private GameEntity parent;
     private Queue<Vec2d> history = new LinkedList<>();
-    private static final int historySize = 10;
+    private static final int HISTORY_SIZE = 10;
 
-    public SnakeBody(Pane pane, GameEntity parent, Image image) {
+    SnakeBody(Pane pane, GameEntity parent, Image image) {
         super(pane);
         this.parent = parent;
         setImage(image);
@@ -32,15 +30,17 @@ public class SnakeBody extends GameEntity implements Animatable {
         double yc = parent.getY();
         setX(xc);
         setY(yc);
-        for (int i = 0; i < historySize; i++) {
+        for (int i = 0; i < HISTORY_SIZE; i++) {
             history.add(new Vec2d(xc, yc));
         }
     }
 
     public void step() {
         Vec2d pos = history.poll(); // remove the oldest item from the history
-        setX(pos.x);
-        setY(pos.y);
+        if (pos != null) {
+            setX(pos.x);
+            setY(pos.y);
+        }
         history.add(new Vec2d(parent.getX(), parent.getY())); // add the parent's current position to the beginning of the history
     }
 
