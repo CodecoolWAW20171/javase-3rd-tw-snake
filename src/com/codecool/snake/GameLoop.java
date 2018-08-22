@@ -16,6 +16,10 @@ import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
 
+    private static final int chanceForSimpleEnemiesAndPowerups = 1000;
+    private static final int chanceIn1000ForSimpleEnemiesAndPowerups = 2;
+    private static final int chanceIn1000ForBetterPowerups = 1;
+
     // This gets called every 1/60 seconds
     @Override
     public void handle(long now) {
@@ -63,13 +67,13 @@ public class GameLoop extends AnimationTimer {
 
     private void generateRandomPowerups() {
         Random rand = new Random();
-        if (rand.nextInt(1000) < 2) {
+        if (rand.nextInt(chanceForSimpleEnemiesAndPowerups) < chanceIn1000ForSimpleEnemiesAndPowerups) {
             Globals.addGameObject(new SimpleEnemy(Globals.gamePane));
-        } if (rand.nextInt(1000) < 2) {
+        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerups) < chanceIn1000ForSimpleEnemiesAndPowerups) {
             Globals.addGameObject((new SimplePowerup(Globals.gamePane)));
-        } if (rand.nextInt(1000) < 1) {
+        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerups) < chanceIn1000ForBetterPowerups) {
             Globals.addGameObject(new HealingPowerup(Globals.gamePane));
-        } if (rand.nextInt(1500) < 1) {
+        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerups) < chanceIn1000ForBetterPowerups) {
             Globals.addGameObject(new ScorePowerup(Globals.gamePane));
         }
     }
