@@ -39,7 +39,7 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void updateHealthBarStatus() {
-        if (!Globals.singleplayer) {
+        if (!Globals.singlePlayer) {
             Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() +
                     " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
         } else {

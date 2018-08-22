@@ -10,7 +10,7 @@ public class Modals {
         System.out.println("Game Over");
         alert.setTitle("Game Over");
         String higscoreText;
-        if (Globals.singleplayer)
+        if (Globals.singlePlayer)
             higscoreText = "Your score: " + Globals.snake.score;
         else
             higscoreText = "Green snake: " + Globals.snake.score + "\nPink snake: " + Globals.secSnake.score;
@@ -48,12 +48,12 @@ public class Modals {
         alert.getButtonTypes().addAll(singlePlayerModeButton, twoPlayersModeButton);
 
         alert.getDialogPane().lookupButton(twoPlayersModeButton).setOnMouseReleased(event -> {
-            Globals.singleplayer = false;
+            Globals.singlePlayer = false;
             start(game);
         });
 
         alert.getDialogPane().lookupButton(singlePlayerModeButton).setOnMouseReleased(event -> {
-            Globals.singleplayer = true;
+            Globals.singlePlayer = true;
             start(game);
         });
 
