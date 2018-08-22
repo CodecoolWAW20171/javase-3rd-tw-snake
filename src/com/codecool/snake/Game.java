@@ -25,11 +25,11 @@ class Game extends Pane {
     private void spawnSnakes() {
         int newPos;
         int SNAKE_Y_POSITION = 500;
+        int PLAYER_1_X_POSITION_SINGLE = 500;
+        int PLAYER_1_X_POSITION_MULTI = 750;
         if (Globals.singlePlayer) {
-            int PLAYER_1_X_POSITION_SINGLE = 500;
             newPos = PLAYER_1_X_POSITION_SINGLE;
         } else {
-            int PLAYER_1_X_POSITION_MULTI = 750;
             newPos = PLAYER_1_X_POSITION_MULTI;
             int PLAYER_2_X_POSITION = 250;
             Globals.secSnake = new SnakeHead(this, PLAYER_2_X_POSITION, SNAKE_Y_POSITION, false);

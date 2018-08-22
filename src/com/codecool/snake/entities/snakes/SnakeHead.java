@@ -17,8 +17,8 @@ public class SnakeHead extends GameEntity implements Animatable {
     private final int STARTING_HEALTH = 100;
     private int health = STARTING_HEALTH;
     public int score = 0;
-    public boolean leftKeyDown = false;
-    public boolean rightKeyDown = false;
+    public boolean leftKeyDown;
+    public boolean rightKeyDown;
     private GameEntity tail = this;
     private boolean player;
     private ArrayList<GameEntity> body = new ArrayList<>();
