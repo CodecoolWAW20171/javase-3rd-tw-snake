@@ -14,9 +14,9 @@ import java.util.Random;
 
 public class GameLoop extends AnimationTimer {
 
-    private static final int chanceForSimpleEnemiesAndPowerups = 1000;
-    private static final int chanceIn1000ForSimpleEnemiesAndPowerups = 2;
-    private static final int chanceIn1000ForBetterPowerups = 1;
+    private static final int chanceForSimpleEnemiesAndPowerUps = 1000;
+    private static final int chanceIn1000ForSimpleEnemiesAndPowerUps = 2;
+    private static final int chanceIn1000ForBetterPowerUps = 1;
     private static final int DISTANCE_BETWEEN_SNAKE_HEADS = 15;
 
     // This gets called every 1/60 seconds
@@ -25,7 +25,7 @@ public class GameLoop extends AnimationTimer {
         runAnimations();
         checkSnakesCollisions();
         checkGameOverStatus();
-        generateRandomPowerups();
+        generateRandomPowerUps();
         updateHealthBarStatus();
         updateGameObjectsStatus();
     }
@@ -82,15 +82,15 @@ public class GameLoop extends AnimationTimer {
         Globals.gameLoop.stop();
     }
 
-    private void generateRandomPowerups() {
+    private void generateRandomPowerUps() {
         Random rand = new Random();
-        if (rand.nextInt(chanceForSimpleEnemiesAndPowerups) < chanceIn1000ForSimpleEnemiesAndPowerups) {
+        if (rand.nextInt(chanceForSimpleEnemiesAndPowerUps) < chanceIn1000ForSimpleEnemiesAndPowerUps) {
             Globals.addGameObject(new SimpleEnemy(Globals.gamePane));
-        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerups) < chanceIn1000ForSimpleEnemiesAndPowerups) {
+        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerUps) < chanceIn1000ForSimpleEnemiesAndPowerUps) {
             Globals.addGameObject((new SimplePowerup(Globals.gamePane)));
-        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerups) < chanceIn1000ForBetterPowerups) {
+        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerUps) < chanceIn1000ForBetterPowerUps) {
             Globals.addGameObject(new HealingPowerup(Globals.gamePane));
-        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerups) < chanceIn1000ForBetterPowerups) {
+        } if (rand.nextInt(chanceForSimpleEnemiesAndPowerUps) < chanceIn1000ForBetterPowerUps) {
             Globals.addGameObject(new ScorePowerup(Globals.gamePane));
         }
     }
