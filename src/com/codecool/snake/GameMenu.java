@@ -36,6 +36,11 @@ class GameMenu {
 
         Globals.menuModeItem.setOnAction(event -> {
             Modals modal = new Modals();
+            try {
+                Globals.gameLoop.stop();
+            } catch (NullPointerException e) {
+                System.out.println(e);
+            }
             Alert alert = modal.selectGameMode(game);
             Platform.runLater(alert::showAndWait);
         });
