@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 // class for holding all static stuff
 public class Globals {
@@ -40,8 +41,8 @@ public class Globals {
     public static GameLoop gameLoop;
     public static SnakeHead snake;
     public static SnakeHead secSnake;
-    public static SimpleEnemy enemy;
-    public static Laser laserShot;
+    public static List<SimpleEnemy> enemys;
+    public static List<Laser> lasers;
     public static Pane gamePane;
     public static boolean isGamePaused = false;
     public static boolean singleplayer;
