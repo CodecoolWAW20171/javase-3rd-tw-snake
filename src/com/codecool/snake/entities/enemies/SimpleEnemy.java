@@ -7,6 +7,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
@@ -19,7 +20,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
     public SimpleEnemy(Pane pane) {
         super(pane);
 
-        setImage(Globals.simpleEnemy);
+        setImage(new Image("simple_enemy.png"));
         pane.getChildren().add(this);
         Random rnd = new Random();
         setPosition(rnd);

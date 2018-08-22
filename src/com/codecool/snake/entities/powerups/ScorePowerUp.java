@@ -4,6 +4,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
@@ -12,7 +13,7 @@ public class ScorePowerUp extends GameEntity implements Interactable {
 
     public ScorePowerUp(Pane pane) {
         super(pane);
-        setImage(Globals.pill);
+        setImage(new Image("pill.png"));
         pane.getChildren().add(this);
 
         Random rnd = new Random();
