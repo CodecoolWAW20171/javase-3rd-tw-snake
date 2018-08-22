@@ -24,7 +24,7 @@ public class ScorePowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.score += scoreBoost;
+        snakeHead.changeScore(scoreBoost);
         destroy();
     }
 

@@ -88,8 +88,12 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
         }
-        setHealth(health);
-        Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() + " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
+        if (!Globals.singleplayer) {
+            Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() +
+                    " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
+        } else {
+            Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth());
+        }
     }
 //            Globals.gameLoop.stop();
 //            Modals modal = new Modals();
@@ -115,13 +119,12 @@ public class SnakeHead extends GameEntity implements Animatable {
         return this.health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
     public void changeHealth(int diff) {
         health += diff;
-        //setHealth(health);
+    }
+
+    public void changeScore(int diff) {
+        score += diff;
     }
 
     public String getName() {
