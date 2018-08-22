@@ -8,11 +8,15 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-public class SimplePowerup extends GameEntity implements Interactable {
+// a healing powerup that heals the snake
+public class HealingPowerUp extends GameEntity implements Interactable {
 
-    public SimplePowerup(Pane pane) {
+    private static final int snakeStartingHealth = 100;
+    private static final int healingPoints = 10;
+
+    public HealingPowerUp(Pane pane) {
         super(pane);
-        setImage(Globals.powerupBerry);
+        setImage(Globals.medPack);
         pane.getChildren().add(this);
 
         Random rnd = new Random();
@@ -22,12 +26,14 @@ public class SimplePowerup extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        snakeHead.addPart(1);
+        if (snakeHead.getHealth() != snakeStartingHealth) {
+            snakeHead.changeHealth(healingPoints);
+        }
         destroy();
     }
 
     @Override
     public String getMessage() {
-        return "Got berry power-up :)";
+        return "Got healing power-up :)";
     }
 }

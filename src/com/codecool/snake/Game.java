@@ -1,7 +1,7 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.layout.Pane;
 
@@ -43,7 +43,7 @@ class Game extends Pane {
 
     private void spawnBerries() {
         for (int i = 0; i < NUM_OF_BERRIES; i++) {
-            new SimplePowerup(this);
+            new SimplePowerUp(this);
         }
     }
 
