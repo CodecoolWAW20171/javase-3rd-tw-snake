@@ -46,7 +46,7 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     @Override
     public String getMessage() {
-        return DAMAGE + " DAMAGE";
+        return DAMAGE + " damage";
     }
 
     private void setPosition(Random rnd) {
