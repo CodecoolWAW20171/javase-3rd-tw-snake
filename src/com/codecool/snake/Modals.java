@@ -3,19 +3,25 @@ package com.codecool.snake;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-public class Modals {
+class Modals {
 
-    public Alert showGameOverModal() {
+    private Alert createAlert(String title, String headerText, String contentText) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        System.out.println("Game Over");
-        alert.setTitle("Game Over");
-        String higscoreText;
-        if (Globals.singlePlayer)
-            higscoreText = "Your score: " + Globals.snake.score;
-        else
-            higscoreText = "Green snake: " + Globals.snake.score + "\nPink snake: " + Globals.secSnake.score;
-        alert.setHeaderText(higscoreText);
-        alert.setContentText("Your Health:\n" + Globals.snake.health + "\nDo you want try again?");
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+
+        return alert;
+    }
+
+    private String highScoreText() {
+        return Globals.singlePlayer ?
+                "Your score: " + Globals.snake.score :
+                "Green snake: " + Globals.snake.score + "\nPink snake: " + Globals.secSnake.score;
+    }
+
+    Alert showGameOverModal() {
+        Alert alert = createAlert("Game Over", highScoreText(), "Would you like to try again?");
 
         ButtonType yesButton = new ButtonType("YES");
         ButtonType noButton = new ButtonType("NO");
@@ -23,27 +29,19 @@ public class Modals {
         alert.getButtonTypes().clear();
         alert.getButtonTypes().addAll(noButton, yesButton);
 
-        alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> {
-            Globals.gameLoop.restart();
-        });
+        alert.getDialogPane().lookupButton(yesButton).setOnMouseReleased(event -> Globals.gameLoop.restart());
 
-        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> {
-            alert.close();
-        });
+        alert.getDialogPane().lookupButton(noButton).setOnMouseReleased(event -> alert.close());
 
         return alert;
     }
 
-    public Alert selectGameMode(Game game) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        System.out.println("Select Game Mode");
-        alert.setTitle("Game Mode");
-        alert.setHeaderText("Game Mode");
-        alert.setContentText("Select Game Mode");
+    Alert selectGameMode(Game game) {
+        Alert alert = createAlert("Game Mode", "Game Mode", "Select Game Mode");
 
         ButtonType singlePlayerModeButton = new ButtonType("Single Player");
         ButtonType twoPlayersModeButton = new ButtonType("Versus Mode");
-
+        
         alert.getButtonTypes().clear();
         alert.getButtonTypes().addAll(singlePlayerModeButton, twoPlayersModeButton);
 
