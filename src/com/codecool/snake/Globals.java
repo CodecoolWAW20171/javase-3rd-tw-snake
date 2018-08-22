@@ -1,7 +1,9 @@
 package com.codecool.snake;
 
 import com.codecool.snake.entities.GameEntity;
+import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.entities.laser.Laser;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -29,6 +31,7 @@ public class Globals {
     public static Image powerupBerry = new Image("powerup_berry.png");
     public static Image medPack = new Image("med_pack.png");
     public static Image pill = new Image("pill.png");
+    public static Image laser = new Image("laser.png");
     //.. put here the other images you want to use
 
     public static List<GameEntity> gameObjects;
@@ -37,6 +40,8 @@ public class Globals {
     public static GameLoop gameLoop;
     public static SnakeHead snake;
     public static SnakeHead secSnake;
+    public static SimpleEnemy enemy;
+    public static Laser laserShot;
     public static Pane gamePane;
     public static boolean isGamePaused = false;
     public static boolean singleplayer;
