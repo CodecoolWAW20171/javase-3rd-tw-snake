@@ -9,8 +9,6 @@ import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import java.util.Random;
 
@@ -27,12 +25,25 @@ public class GameLoop extends AnimationTimer {
         checkSnakesCollisions();
         checkGameOverStatus();
         generateRandomPowerups();
+        updateHealthBarStatus();
+        updateGameObjectsStatus();
+    }
 
+    private void updateGameObjectsStatus() {
         Globals.gameObjects.addAll(Globals.newGameObjects);
         Globals.newGameObjects.clear();
 
         Globals.gameObjects.removeAll(Globals.oldGameObjects);
         Globals.oldGameObjects.clear();
+    }
+
+    private void updateHealthBarStatus() {
+        if (!Globals.singleplayer) {
+            Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth() +
+                    " Health of " + Globals.secSnake.getName() + ": " + Globals.secSnake.getHealth());
+        } else {
+            Globals.menuHealth.setText("Health of " + Globals.snake.getName() + ": " + Globals.snake.getHealth());
+        }
     }
 
     private void runAnimations() {
@@ -53,6 +64,13 @@ public class GameLoop extends AnimationTimer {
     }
 
     private void checkGameOverStatus() {
+        if (Globals.snake.getHealth() <= 0)
+            if (Globals.secSnake != null)
+                if (Globals.secSnake.getHealth() <= 0)
+                    handleGameOver();
+                else {
+                    handleGameOver();
+                }
         if(Globals.snake.getHealth() <= 0 && Globals.secSnake.getHealth() <= 0)
             handleGameOver();
     }
@@ -78,7 +96,6 @@ public class GameLoop extends AnimationTimer {
         }
     }
 
-    @Override
     public void stop() {
         super.stop();
         Globals.gamePane.getChildren().clear();
