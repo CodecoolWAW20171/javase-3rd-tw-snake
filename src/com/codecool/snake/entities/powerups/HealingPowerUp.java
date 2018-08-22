@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-// a healing powerup that heals the snake
+// a healing powerUp that heals the snake
 public class HealingPowerUp extends GameEntity implements Interactable {
 
     private static final int snakeStartingHealth = 100;

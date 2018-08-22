@@ -16,7 +16,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float TURN_RATE = 2;
     private static final int NUMBER_OF_PARTS_TO_ADD_AT_START = 4;
     private static final int STARTING_HEALTH = 100;
-    public int health = STARTING_HEALTH;
+    private int health = STARTING_HEALTH;
     public int score = 0;
     public boolean leftKeyDown = false;
     public boolean rightKeyDown = false;

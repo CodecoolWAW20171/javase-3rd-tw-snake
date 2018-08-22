@@ -47,7 +47,7 @@ class Modals {
         try {
             Globals.gameLoop.stop();
         } catch (NullPointerException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
         alert.getDialogPane().lookupButton(twoPlayersModeButton).setOnMouseReleased(event -> {
             Globals.singlePlayer = false;
