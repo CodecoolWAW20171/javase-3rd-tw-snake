@@ -77,6 +77,7 @@ public class GameLoop extends AnimationTimer {
     @Override
     public void stop() {
         super.stop();
+        Globals.gamePane.getChildren().clear();
         Globals.snake.destroy();
     }
 

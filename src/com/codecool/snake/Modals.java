@@ -49,15 +49,23 @@ public class Modals {
 
         alert.getDialogPane().lookupButton(twoPlayersModeButton).setOnMouseReleased(event -> {
             Globals.singleplayer = false;
-            game.start();
+            start(game);
         });
 
         alert.getDialogPane().lookupButton(singlePlayerModeButton).setOnMouseReleased(event -> {
             Globals.singleplayer = true;
-            game.start();
+            start(game);
         });
 
         return alert;
     }
 
+    private void start(Game game) {
+        try {
+            Globals.gameLoop.stop();
+            game.start();
+        } catch (NullPointerException e) {
+            game.start();
+        }
+    }
 }
