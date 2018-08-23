@@ -4,16 +4,18 @@ import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.laser.Laser;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 class Game extends Pane {
+    private Scene scene;
 
     void start() {
         spawnSnakes();
         spawnEnemies();
         spawnBerries();
 
-        Globals.scene = getScene();
+        scene = getScene();
         handleOnKeyPressed();
         handleOnKeyReleased();
 
@@ -53,7 +55,7 @@ class Game extends Pane {
     }
 
     private void handleOnKeyPressed() {
-        Globals.scene.setOnKeyPressed(event -> {
+        scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case LEFT:  Globals.snake.leftKeyDown = true; break;
                 case RIGHT: Globals.snake.rightKeyDown  = true; break;
@@ -68,7 +70,7 @@ class Game extends Pane {
     }
 
     private void handleOnKeyReleased() {
-        Globals.scene.setOnKeyReleased(event -> {
+        scene.setOnKeyReleased(event -> {
             switch (event.getCode()) {
                 case LEFT:  Globals.snake.leftKeyDown = false; break;
                 case RIGHT: Globals.snake.rightKeyDown = false; break;

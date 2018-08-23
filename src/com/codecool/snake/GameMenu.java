@@ -5,36 +5,37 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 class GameMenu {
+
     void generateMenu(Game game) {
         Globals.vBox = new VBox();
         Globals.menuBar = new MenuBar();
-        Globals.menu = new Menu("Menu");
+        Menu menu = new Menu("Menu");
 
-        Globals.menuRestartItem = new MenuItem("Restart");
-        Globals.menuPauseItem = new MenuItem("Pause");
-        Globals.menuModeItem = new MenuItem("Mode");
-        Globals.menuCloseItem = new MenuItem("Close");
+        MenuItem menuRestartItem = new MenuItem("Restart");
+        MenuItem menuPauseItem = new MenuItem("Pause");
+        MenuItem menuModeItem = new MenuItem("Mode");
+        MenuItem menuCloseItem = new MenuItem("Close");
         String info = "<- Move Left, -> Move Right, P - pause, R - restart";
-        Globals.menuInfo = new Menu(info);
-        Globals.menuInfo.setDisable(false);
+        Menu menuInfo = new Menu(info);
+        menuInfo.setDisable(false);
 
         Globals.menuHealth = new Menu();
         Globals.menuHealth.setDisable(false);
 
-        Globals.menuCloseItem.setOnAction(event -> System.exit(0));
+        menuCloseItem.setOnAction(event -> System.exit(0));
 
-        Globals.menuPauseItem.setOnAction(event -> {
+        menuPauseItem.setOnAction(event -> {
             Globals.gameLoop.pause();
-            if ( Globals.menuPauseItem.getText().equals("Pause")) {
-                Globals.menuPauseItem.setText("Resume");
+            if (menuPauseItem.getText().equals("Pause")) {
+                menuPauseItem.setText("Resume");
             } else {
-                Globals.menuPauseItem.setText("Pause");
+                menuPauseItem.setText("Pause");
             }
         });
 
-        Globals.menuRestartItem.setOnAction(event -> Globals.gameLoop.restart());
+        menuRestartItem.setOnAction(event -> Globals.gameLoop.restart());
 
-        Globals.menuModeItem.setOnAction(event -> {
+        menuModeItem.setOnAction(event -> {
             Modals modal = new Modals();
             try {
                 Globals.gameLoop.stop();
@@ -45,10 +46,10 @@ class GameMenu {
             Platform.runLater(alert::showAndWait);
         });
 
-        Globals.menu.getItems().setAll(Globals.menuRestartItem, Globals.menuModeItem, Globals.menuPauseItem, Globals.menuCloseItem);
+        menu.getItems().setAll(menuRestartItem, menuModeItem, menuPauseItem, menuCloseItem);
 
 
-        Globals.menuBar.getMenus().addAll(Globals.menu, Globals.menuInfo, Globals.menuHealth);
+        Globals.menuBar.getMenus().addAll(menu, menuInfo, Globals.menuHealth);
         Globals.vBox.getChildren().addAll(Globals.menuBar, game);
     }
 }

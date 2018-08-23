@@ -17,8 +17,8 @@ public class SnakeHead extends GameEntity implements Animatable {
     private final int STARTING_HEALTH = 100;
     private int health = STARTING_HEALTH;
     public int score = 0;
-    public boolean leftKeyDown = false;
-    public boolean rightKeyDown = false;
+    public boolean leftKeyDown;
+    public boolean rightKeyDown;
     private GameEntity tail = this;
     private boolean player;
     private ArrayList<GameEntity> body = new ArrayList<>();
@@ -29,8 +29,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         super(pane);
         setX(xc);
         setY(yc);
-        if (player) setImage(Globals.snakeHead);
-        else setImage(Globals.secSnakeHead);
+        if (player) setImage(new Image("snake_head.png"));
+        else setImage(new Image("sec_snake_head.png"));
         pane.getChildren().add(this);
         this.player = player;
 
@@ -89,8 +89,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         for (int i = 0; i < numParts; i++) {
             score++;
             Image image;
-            if (player) image = Globals.snakeBody;
-            else image = Globals.secSnakeBody;
+            if (player) image = new Image("snake_body.png");
+            else image = new Image("sec_snake_body.png");
             tail = new SnakeBody(pane, tail, image);
             body.add(tail);
         }

@@ -4,6 +4,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 import java.util.Random;
@@ -13,7 +14,7 @@ public class HealingPowerUp extends GameEntity implements Interactable {
 
     public HealingPowerUp(Pane pane) {
         super(pane);
-        setImage(Globals.medPack);
+        setImage(new Image("med_pack.png"));
         pane.getChildren().add(this);
 
         Random rnd = new Random();
