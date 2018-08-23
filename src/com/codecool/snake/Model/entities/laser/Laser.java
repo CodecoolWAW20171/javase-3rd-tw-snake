@@ -20,7 +20,7 @@ public class Laser extends GameEntity implements Animatable, Interactable {
 
         setImage(new Image("laser.png"));
         pane.getChildren().add(this);
-        int speed = 3;
+        float speed = snake.speed + 1;
 
         setX(snake.getX());
         setY(snake.getY());

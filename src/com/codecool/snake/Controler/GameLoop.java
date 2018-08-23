@@ -5,7 +5,7 @@ import com.codecool.snake.Model.entities.Animatable;
 import com.codecool.snake.Model.entities.GameEntity;
 import com.codecool.snake.Model.entities.enemies.SimpleEnemy;
 import com.codecool.snake.Model.entities.powerups.HealingPowerUp;
-import com.codecool.snake.Model.entities.powerups.ScorePowerUp;
+import com.codecool.snake.Model.entities.powerups.SpeedPowerUp;
 import com.codecool.snake.Model.entities.powerups.SimplePowerUp;
 import com.codecool.snake.View.Modals;
 import javafx.animation.AnimationTimer;
@@ -93,7 +93,7 @@ public class GameLoop extends AnimationTimer {
         if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_BETTER_POWER_UPS) {
             Globals.addGameObject(new HealingPowerUp(Globals.gamePane));
         } if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_BETTER_POWER_UPS) {
-            Globals.addGameObject(new ScorePowerUp(Globals.gamePane));
+            Globals.addGameObject(new SpeedPowerUp(Globals.gamePane));
         }
     }
 

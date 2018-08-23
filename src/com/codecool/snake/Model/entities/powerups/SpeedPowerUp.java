@@ -9,9 +9,9 @@ import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
-public class ScorePowerUp extends GameEntity implements Interactable {
+public class SpeedPowerUp extends GameEntity implements Interactable {
 
-    public ScorePowerUp(Pane pane) {
+    public SpeedPowerUp(Pane pane) {
         super(pane);
         setImage(new Image("pill.png"));
         pane.getChildren().add(this);
@@ -23,13 +23,12 @@ public class ScorePowerUp extends GameEntity implements Interactable {
 
     @Override
     public void apply(SnakeHead snakeHead) {
-        int SCORE_BOOST = 10;
-        snakeHead.changeScore(SCORE_BOOST);
+        snakeHead.changeSpeed();
         destroy();
     }
 
     @Override
     public String getMessage() {
-        return "Got score power-up :)";
+        return "Got speed power-up :)";
     }
 }

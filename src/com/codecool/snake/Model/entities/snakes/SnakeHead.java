@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
-    private static final float SPEED = 2;
-    private static final float TURN_RATE = 2;
+    public static float speed = 1.5f;
+    static float turnRate = 1.5f;
     private final int STARTING_HEALTH = 100;
     private int health = STARTING_HEALTH;
     public int score = 0;
@@ -48,15 +48,15 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     private double setDirection() {
         double dir = getRotate();
-        if (leftKeyDown) return dir - TURN_RATE;
-        if (rightKeyDown) return dir + TURN_RATE;
+        if (leftKeyDown) return dir - turnRate;
+        if (rightKeyDown) return dir + turnRate;
         return dir;
     }
 
     private void moveToNewPos() {
         double direction = setDirection();
         setRotate(direction);
-        Point2D heading = Utils.directionToVector(direction, SPEED);
+        Point2D heading = Utils.directionToVector(direction, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
@@ -104,9 +104,11 @@ public class SnakeHead extends GameEntity implements Animatable {
         health += diff;
     }
 
-    public void changeScore(int diff){
-            score += diff;
-        }
+    public void changeSpeed(){
+        float changeRatio = 0.1f;
+        speed += changeRatio;
+        turnRate += changeRatio;
+    }
 
     public String getName() {
         return name;
