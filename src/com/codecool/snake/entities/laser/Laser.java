@@ -8,6 +8,7 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 public class Laser extends GameEntity implements Animatable, Interactable {
@@ -17,7 +18,7 @@ public class Laser extends GameEntity implements Animatable, Interactable {
     public Laser(Pane pane, SnakeHead snake) {
         super(pane);
 
-        setImage(Globals.laser);
+        setImage(new Image("laser.png"));
         pane.getChildren().add(this);
         int speed = 3;
 
