@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class SnakeHead extends GameEntity implements Animatable {
 
     public static float speed = 1.5f;
-    static float turnRate = 1.5f;
+    private static float turnRate = 1.5f;
     private final int STARTING_HEALTH = 100;
     private int health = STARTING_HEALTH;
     public int score = 0;
