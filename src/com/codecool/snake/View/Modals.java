@@ -39,7 +39,7 @@ public class Modals {
         return alert;
     }
 
-    public Alert selectGameMode(Game game) {
+    Alert selectGameMode(Game game) {
         Alert alert = createAlert("Game Mode", "Game Mode", "Select Game Mode");
 
         ButtonType singlePlayerModeButton = new ButtonType("Single Player");

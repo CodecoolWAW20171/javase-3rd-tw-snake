@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class GameMenu {
 
-    public void generateMenu(Game game) {
+    void generateMenu(Game game) {
         Globals.vBox = new VBox();
         Globals.menuBar = new MenuBar();
         Menu menu = new Menu("Menu");
