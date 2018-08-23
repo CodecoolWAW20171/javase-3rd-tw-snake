@@ -9,7 +9,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 
-public class GameMenu {
+class GameMenu {
 
     void generateMenu(Game game) {
         Globals.vBox = new VBox();
