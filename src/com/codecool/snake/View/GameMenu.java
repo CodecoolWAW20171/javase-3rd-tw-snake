@@ -1,12 +1,17 @@
-package com.codecool.snake;
+package com.codecool.snake.View;
 
+import com.codecool.snake.Controler.Game;
+import com.codecool.snake.Model.Globals;
 import javafx.application.Platform;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 
-class GameMenu {
+public class GameMenu {
 
-    void generateMenu(Game game) {
+    public void generateMenu(Game game) {
         Globals.vBox = new VBox();
         Globals.menuBar = new MenuBar();
         Menu menu = new Menu("Menu");
@@ -40,7 +45,7 @@ class GameMenu {
             try {
                 Globals.gameLoop.stop();
             } catch (NullPointerException e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
             Alert alert = modal.selectGameMode(game);
             Platform.runLater(alert::showAndWait);

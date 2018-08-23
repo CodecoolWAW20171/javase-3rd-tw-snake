@@ -1,9 +1,12 @@
-package com.codecool.snake;
+package com.codecool.snake.View;
 
+
+import com.codecool.snake.Controler.Game;
+import com.codecool.snake.Model.Globals;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-class Modals {
+public class Modals {
 
     private Alert createAlert(String title, String headerText, String contentText) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -20,7 +23,7 @@ class Modals {
                 "Green snake: " + Globals.snake.score + "\nPink snake: " + Globals.secSnake.score;
     }
 
-    Alert showGameOverModal() {
+    public Alert showGameOverModal() {
         Alert alert = createAlert("Game Over", highScoreText(), "Would you like to try again?");
 
         ButtonType yesButton = new ButtonType("YES");
@@ -36,7 +39,7 @@ class Modals {
         return alert;
     }
 
-    Alert selectGameMode(Game game) {
+    public Alert selectGameMode(Game game) {
         Alert alert = createAlert("Game Mode", "Game Mode", "Select Game Mode");
 
         ButtonType singlePlayerModeButton = new ButtonType("Single Player");
@@ -44,11 +47,8 @@ class Modals {
         
         alert.getButtonTypes().clear();
         alert.getButtonTypes().addAll(singlePlayerModeButton, twoPlayersModeButton);
-        try {
-            Globals.gameLoop.stop();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
+        if (Globals.gameLoop != null)
+                Globals.gameLoop.stop();
         alert.getDialogPane().lookupButton(twoPlayersModeButton).setOnMouseReleased(event -> {
             Globals.singlePlayer = false;
             start(game);

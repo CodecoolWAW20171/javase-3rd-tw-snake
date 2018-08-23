@@ -1,7 +1,7 @@
-package com.codecool.snake.entities.snakes;
+package com.codecool.snake.Model.entities.snakes;
 
-import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.Animatable;
+import com.codecool.snake.Model.entities.GameEntity;
+import com.codecool.snake.Model.entities.Animatable;
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.Node;
 import javafx.scene.image.Image;

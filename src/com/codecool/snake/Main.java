@@ -1,9 +1,7 @@
 package com.codecool.snake;
 
+import com.codecool.snake.View.MainFrame;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -14,19 +12,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Game game = new Game();
-        Globals.gamePane = game;
-        Globals.stage = primaryStage;
-
-        GameMenu gameMenu = new GameMenu();
-        gameMenu.generateMenu(game);
-        primaryStage.setTitle("Snake Game");
-        primaryStage.setScene(new Scene(Globals.vBox, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
-        primaryStage.show();
-
-        Modals modal = new Modals();
-        Alert alert = modal.selectGameMode(game);
-
-        Platform.runLater(alert::showAndWait);
+        new MainFrame(primaryStage);
     }
 }

@@ -1,9 +1,9 @@
-package com.codecool.snake.entities.powerups;
+package com.codecool.snake.Model.entities.powerups;
 
-import com.codecool.snake.Globals;
-import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.Model.Globals;
+import com.codecool.snake.Model.entities.GameEntity;
+import com.codecool.snake.Model.entities.Interactable;
+import com.codecool.snake.Model.entities.snakes.SnakeHead;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 

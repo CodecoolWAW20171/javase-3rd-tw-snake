@@ -1,7 +1,8 @@
-package com.codecool.snake;
+package com.codecool.snake.Model;
 
-import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.Controler.GameLoop;
+import com.codecool.snake.Model.entities.GameEntity;
+import com.codecool.snake.Model.entities.snakes.SnakeHead;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Pane;
@@ -17,20 +18,20 @@ public class Globals {
     public static final double WINDOW_WIDTH = 1000;
     public static final double WINDOW_HEIGHT = 700;
 
-    static List<GameEntity> gameObjects;
-    static List<GameEntity> newGameObjects;
-    static List<GameEntity> oldGameObjects;
-    static GameLoop gameLoop;
+    public static List<GameEntity> gameObjects;
+    public static List<GameEntity> newGameObjects;
+    public static List<GameEntity> oldGameObjects;
+    public static GameLoop gameLoop;
     public static SnakeHead snake;
-    static SnakeHead secSnake;
-    static Pane gamePane;
-    static boolean isGamePaused = false;
-    static boolean singlePlayer;
+    public static SnakeHead secSnake;
+    public static Pane gamePane;
+    public static boolean isGamePaused = false;
+    public static boolean singlePlayer;
 
-    static Stage stage;
-    static VBox vBox;
-    static MenuBar menuBar;
-    static Menu menuHealth;
+    public static Stage stage;
+    public static VBox vBox;
+    public static MenuBar menuBar;
+    public static Menu menuHealth;
 
     static {
         gameObjects = new LinkedList<>();

@@ -1,11 +1,13 @@
-package com.codecool.snake;
+package com.codecool.snake.Controler;
 
-import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.entities.GameEntity;
-import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.HealingPowerUp;
-import com.codecool.snake.entities.powerups.ScorePowerUp;
-import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.Model.Globals;
+import com.codecool.snake.Model.entities.Animatable;
+import com.codecool.snake.Model.entities.GameEntity;
+import com.codecool.snake.Model.entities.enemies.SimpleEnemy;
+import com.codecool.snake.Model.entities.powerups.HealingPowerUp;
+import com.codecool.snake.Model.entities.powerups.ScorePowerUp;
+import com.codecool.snake.Model.entities.powerups.SimplePowerUp;
+import com.codecool.snake.View.Modals;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -18,7 +20,7 @@ public class GameLoop extends AnimationTimer {
     @Override
     public void handle(long now) {
         runAnimations();
-        checkSnakesCollisions();
+        checkSnakesCollision();
         checkGameOverStatus();
         generateRandomPowerUps();
         updateHealthBarStatus();
@@ -51,8 +53,8 @@ public class GameLoop extends AnimationTimer {
         }
     }
 
-    private void checkSnakesCollisions() {
-        int DISTANCE_BETWEEN_SNAKE_HEADS = 15;
+    private void checkSnakesCollision() {
+        int DISTANCE_BETWEEN_SNAKE_HEADS = 20;
         if (Globals.secSnake != null)
             if ((Math.abs(Globals.snake.getY() - Globals.secSnake.getY()) < DISTANCE_BETWEEN_SNAKE_HEADS) &&
                     (Math.abs(Globals.snake.getX() - Globals.secSnake.getX()) < DISTANCE_BETWEEN_SNAKE_HEADS)) {
@@ -101,7 +103,7 @@ public class GameLoop extends AnimationTimer {
         Globals.snake.destroy();
     }
 
-    void pause() {
+    public void pause() {
         if(!Globals.isGamePaused) {
             super.stop();
             Globals.isGamePaused = !Globals.isGamePaused;
@@ -111,7 +113,7 @@ public class GameLoop extends AnimationTimer {
         }
     }
 
-    void restart() {
+    public void restart() {
         Globals.gameLoop.stop();
         Game game = new Game();
         Globals.vBox = new VBox();

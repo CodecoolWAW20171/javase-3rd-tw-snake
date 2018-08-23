@@ -1,15 +1,16 @@
-package com.codecool.snake;
+package com.codecool.snake.Controler;
 
-import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.SimplePowerUp;
-import com.codecool.snake.entities.snakes.SnakeHead;
+import com.codecool.snake.Model.Globals;
+import com.codecool.snake.Model.entities.enemies.SimpleEnemy;
+import com.codecool.snake.Model.entities.powerups.SimplePowerUp;
+import com.codecool.snake.Model.entities.snakes.SnakeHead;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
-class Game extends Pane {
+public class Game extends Pane {
     private Scene scene;
 
-    void start() {
+    public void start() {
         spawnSnakes();
         spawnEnemies();
         spawnBerries();
