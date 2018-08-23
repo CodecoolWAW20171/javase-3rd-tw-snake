@@ -12,8 +12,10 @@ import java.util.ArrayList;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
-    public static float speed = 1.5f;
-    private static float turnRate = 1.5f;
+    private static float STARTING_SPEED = 1.5f;
+    private static float STARTING_TURN_RATE = 1.5f;
+    public static float speed;
+    private static float turnRate;
     private final int STARTING_HEALTH = 100;
     private int health = STARTING_HEALTH;
     public int score = 0;
@@ -33,6 +35,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         else setImage(new Image("sec_snake_head.png"));
         pane.getChildren().add(this);
         this.player = player;
+        speed = STARTING_SPEED;
+        turnRate = STARTING_TURN_RATE;
 
         int NUMBER_OF_PARTS_TO_ADD_AT_START = 4;
         addPart(NUMBER_OF_PARTS_TO_ADD_AT_START);
