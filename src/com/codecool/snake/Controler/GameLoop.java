@@ -83,7 +83,7 @@ public class GameLoop extends AnimationTimer {
     private void generateRandomPowerUps() {
         Random rand = new Random();
         int CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 1000;
-        int CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 2;
+        int CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS = 10;
         if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) {
             Globals.addGameObject(new SimpleEnemy(Globals.gamePane));
         } if (rand.nextInt(CHANCE_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) < CHANCE_IN_1000_FOR_SIMPLE_ENEMIES_AND_POWER_UPS) {
