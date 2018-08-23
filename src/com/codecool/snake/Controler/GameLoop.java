@@ -116,6 +116,7 @@ public class GameLoop extends AnimationTimer {
     public void restart() {
         Globals.gameLoop.stop();
         Game game = new Game();
+        Globals.gamePane = game;
         Globals.vBox = new VBox();
         Globals.vBox.getChildren().addAll(Globals.menuBar, game);
         Globals.stage.setScene(new Scene(Globals.vBox, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT));
